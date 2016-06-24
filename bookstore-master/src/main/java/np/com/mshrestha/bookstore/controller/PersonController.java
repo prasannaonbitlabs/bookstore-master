@@ -55,15 +55,20 @@ public class PersonController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String savePerson(@ModelAttribute("person") Person person,
-			BindingResult result) {
-
-		personService.savePerson(person);
-
-		/*
-		 * Note that there is no slash "/" right after "redirect:" So, it
-		 * redirects to the path relative to the current path
-		 */
-		return "redirect:listPerson";
+			BindingResult result,Map<String, Object> map) {
+		
+		if (!person.getPassword().equals(person.getConfirmpassword())){
+			map.put("massage","confirm password not match with password" );
+			return "/person/register";
+		}else if(person.getEmail().equals(person.getConfirmemail())){
+			map.put("massage","confirm email not match with email" );
+			return "/person/register";	
+				
+		}else{
+			personService.savePerson(person);
+			return "redirect:listPerson";
+		}
+		
 	}
 
 	@RequestMapping("/delete/{personId}")

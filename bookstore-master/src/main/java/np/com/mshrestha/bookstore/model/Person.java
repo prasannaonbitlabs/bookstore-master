@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * Entity bean with JPA annotations
@@ -28,8 +29,38 @@ public class Person {
     String adress;
     String city;
     int age;
+    String password;
+    @Transient
+    String confirmpassword;
+    String email;
+    @Transient
+    String confirmemail;
     
     
+	public String getEmail() {
+		return email;
+	}
+	public String getConfirmemail() {
+		return confirmemail;
+	}
+	public void setConfirmemail(String confirmemail) {
+		this.confirmemail = confirmemail;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getConfirmpassword() {
+		return confirmpassword;
+	}
+	public void setConfirmpassword(String confirmpassword) {
+		this.confirmpassword = confirmpassword;
+	}
 	public String getFirstName() {
 		return firstName;
 	}
