@@ -46,10 +46,6 @@ public class PersonController {
 
 		   map.put("person", new Person());
 
-		/*
-		 * Note that there is no slash "/" right after "redirect:" So, it
-		 * redirects to the path relative to the current path
-		 */
 		return "/person/register";
 	}
 
@@ -75,16 +71,6 @@ public class PersonController {
 	public String deletePerson(@PathVariable("personId") Long id) {
 
 		personService.deletePerson(id);
-
-		/*
-		 * redirects to the path relative to the current path
-		 */
-		// return "redirect:../listBooks";
-
-		/*
-		 * Note that there is the slash "/" right after "redirect:" So, it
-		 * redirects to the path relative to the project root path
-		 */
 		return "redirect:/person/listPerson";
 	}
 }
