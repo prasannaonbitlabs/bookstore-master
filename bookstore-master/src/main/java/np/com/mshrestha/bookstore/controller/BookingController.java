@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/Booking")
+@RequestMapping("/booking")
 public class BookingController {
 
 	@Autowired
@@ -23,44 +23,46 @@ public class BookingController {
 	@RequestMapping(value = { "/", "/listBooking" })
 	public String listBooking(Map<String, Object> map) {
 
-		map.put("Booking", new Booking());
-		map.put("BookingList", bookingService.listBookings());
+		map.put("booking", new Booking());
+		map.put("bookingList", bookingService.listBookings());
 
-		return "/Booking/listBookings";
+		return "/booking/listBookings";
 	}
 
-	@RequestMapping("/get/{BookingId}")
-	public String getBooking(@PathVariable Long BookingId, Map<String, Object> map) {
-         System.out.println("Booking Id " + BookingId);
-		Booking Booking = bookingService.getBooking(BookingId);
+	@RequestMapping("/get/{bookingId}")
+	public String getBooking(@PathVariable Long bookingId, Map<String, Object> map) {
+         System.out.println("Booking Id " + bookingId);
+		Booking Booking = bookingService.getBooking(bookingId);
 
 		map.put("Booking", Booking);
 
-		return "/Booking/BookingForm";
+		return "/booking/bookingForm";
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(@ModelAttribute("Booking") Booking Booking,
+	@RequestMapping(value = "/booking", method = RequestMethod.GET)
+	public String register(@ModelAttribute("booking") Booking Booking,
 			BindingResult result,Map<String, Object> map) {
 
-		   map.put("Booking", new Booking());
+		   map.put("booking", new Booking());
 
-		return "/Booking/register";
+		return "/booking/booking";
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveBooking(@ModelAttribute("Booking") Booking Booking,
+	public String saveBooking(@ModelAttribute("booking") Booking booking,
 			BindingResult result,Map<String, Object> map) {
 		
-			bookingService.saveBooking(Booking);
+		    System.out.println("booking time  " + booking.getTime());
+		
+			bookingService.saveBooking(booking);
 			return "redirect:listBooking";
 		
 	}
 
-	@RequestMapping("/delete/{BookingId}")
-	public String deleteBooking(@PathVariable("BookingId") Long id) {
+	@RequestMapping("/delete/{bookingId}")
+	public String deleteBooking(@PathVariable("bookingId") Long id) {
 
 		bookingService.deleteBooking(id);
-		return "redirect:/Booking/listBooking";
+		return "redirect:/booking/listBooking";
 	}
 }

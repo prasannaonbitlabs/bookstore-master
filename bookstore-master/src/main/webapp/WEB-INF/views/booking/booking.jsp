@@ -29,7 +29,7 @@
 		<h1>SMART CABS</h1>
 		<ul>
 			<li><a href="default.asp">Home</a></li>
-			<li><a href="/bookstore/booking/booking">Book now</a></li>
+			<li><a href="/bookstore/booking/booking">Book Now</a></li>
 			<li><a href="contact.asp">Contact</a></li>
 			<li><a href="about.asp">About2</a></li>
 		</ul>
@@ -38,7 +38,7 @@
 	<div class="well left">
 		<c:url var="actionUrl" value="save" />
 
-		<form:form id="personForm" modelAttribute="person" method="post"
+		 <form:form id="bookingForm" modelAttribute="booking" method="post"
 			action="${actionUrl }" class="pure-form pure-form-aligned">
 
 			<fieldset>
@@ -50,52 +50,66 @@
 				
 
 				<div class="pure-control-group">
-					<label for="firstName">Fist Name</label>
-					<form:input name="personId" path="firstName"
-						placeholder="First Name" />
+					<label for="customerName">Name</label>
+					<form:input name="customerName" path="customerName"
+						placeholder="Name" />
 				</div>
 				<div class="pure-control-group">
-					<label for="LastName">Last Name</label>
-					<form:input name="lastName" id="lastName" path="lastName"
-						placeholder="Last Name" maxlength="15" />
+					<label for="telephonenumber">Phone Number</label>
+					<form:input path="telephonenumber" placeholder="Phone Number" maxlength="10" />
+				</div>
+
+				<div class="pure-control-group">
+				<label for="telephonenumber">Address (Hire Starting Location)</label>
+					<form:input path="streetAdress" placeholder="Street Adress" />
+				</div>
+				
+				<div class="pure-control-group">
+				<label for="adressLineTwo">Adress Line</label>
+					<form:input path="adressLineTwo" placeholder="Adress Line " />
 				</div>
 				<div class="pure-control-group">
-					<label for="city">City</label>
-					<form:input path="city" placeholder="City" maxlength="10" />
+				<label for="city">City</label>
+					<form:input path="city" placeholder="City" />
 				</div>
-				<div class="pure-control-group">
-					<label for="adress">Adress</label>
-					<form:input path="adress" placeholder="Adress" />
-				</div>
-				<div class="pure-control-group">
-					<label for="age">Age</label>
-					<form:input path="age" placeholder="Age" />
-				</div>
-				<div class="pure-control-group">
-					<label for="password">password</label>
-					<form:password path="password" placeholder="password" />
-				</div>
-				<div class="pure-control-group">
-					<label for="confirmpassword">confirm password</label>
-					<form:password path="confirmpassword" placeholder="confirm password" />
+				
+				 <div class="pure-control-group">
+					<label for="destination">Hire Ends Location</label>
+					<form:input path="destination" placeholder="Hire Ends Location" />
 				</div>
 
                <div class="pure-control-group">
-					<label for="email">email</label>
-					<input type="email" path="email" placeholder="email" autocomplete="off" />
+					<label for="dateFrom">Date From</label>
+					<form:input type="date" path="dateFrom"  />
+				</div>
+				<%-- <div class="pure-control-group">
+					<label for="dateTo">confirm email</label>
+					<form:input type="date" path="dateTo"/>
+				</div> --%>
+				
+				<div class="pure-control-group">
+					<label for="time">Time</label>
+					<form:input type="time" path="time"  />
 				</div>
 				<div class="pure-control-group">
-					<label for="confirmemail">confirm email</label>
-					<input type="email" path="confirmemail" placeholder="confirm email" autocomplete="off" />
+					<label for="vehicalType">Vehical Type</label>
+					<form:select  path="vehicalType"  />
+				</div>
+				<div class="pure-control-group">
+					<label for="ComfortableType">Comfortable Type</label>
+					<form:select  path="ComfortableType"  />
+				</div>
+				<div class="pure-control-group">
+					<label for="email">Email</label>
+					<form:input type = "email"  path="email"  />
 				</div>
 
-
 				<form:input path="id" type="hidden" />
-				<input type="submit" value="Register" />
+				<input type="submit" value="Register" /> 
 
 
 			</fieldset>
-		</form:form>
+		</form:form> 
 	</div>
 	<footer> Copyright © W3Schools.com </footer>
 
