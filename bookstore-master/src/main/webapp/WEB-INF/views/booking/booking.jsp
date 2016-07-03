@@ -22,15 +22,14 @@
 <link href="${w3Css}" rel="stylesheet" />
 </head>
 
-
 <body>
 	<header>
 
 		<h1>SMART CABS</h1>
 		<ul>
-			<li><a href="default.asp">Home</a></li>
+			<li><a href="/bookstore/">Home</a></li>
 			<li><a href="/bookstore/booking/booking">Book Now</a></li>
-			<li><a href="contact.asp">Contact</a></li>
+			<li><a href="/bookstore/vehicle/vehicleRegister">Register Vehicle</a></li>
 			<li><a href="about.asp">About2</a></li>
 		</ul>
 	</header>

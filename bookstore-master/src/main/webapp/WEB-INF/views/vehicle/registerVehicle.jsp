@@ -28,7 +28,7 @@
 
 		<h1>SMART CABS</h1>
 		<ul>
-			<li><a href="/bookstore/admin">Home</a></li>
+			<li><a href="/bookstore/">Home</a></li>
 			<li><a href="/bookstore/booking/booking">Book now</a></li>
 			<li><a href="contact.asp">Contact</a></li>
 			<li><a href="about.asp">About2</a></li>
@@ -38,7 +38,7 @@
 	<div class="well left">
 		<c:url var="actionUrl" value="save" />
 
-		<form:form id="personForm" modelAttribute="person" method="post"
+		<form:form id="vehicleForm"  method="post" enctype="multipart/form-data"
 			action="${actionUrl }" class="pure-form pure-form-aligned">
 
 			<fieldset>
@@ -47,52 +47,47 @@
 						${massage}
 					</div>
 				</c:if>
-				
 
 				<div class="pure-control-group">
-					<label for="firstName">Fist Name</label>
-					<form:input name="personId" path="firstName"
-						placeholder="First Name" />
+					<label for="regNumber">Reg Number</label>
+					<input  name="regNumber" placeholder="Reg Number" />
 				</div>
 				<div class="pure-control-group">
-					<label for="LastName">Last Name</label>
-					<form:input name="lastName" id="lastName" path="lastName"
-						placeholder="Last Name" maxlength="15" />
+					<label for="chassieNumber">Chassis Number</label>
+					<input  name="chassieNumber" placeholder="Chassis Number" maxlength="15" />
 				</div>
 				<div class="pure-control-group">
-					<label for="city">City</label>
-					<form:input path="city" placeholder="City" maxlength="10" />
+					<label for="enginNumger">Engine Number</label>
+					<input name="enginNumger" placeholder="Engine Number" maxlength="10" />
 				</div>
 				<div class="pure-control-group">
-					<label for="adress">Adress</label>
-					<form:input path="adress" placeholder="Adress" />
+					<label for="modle">Model</label>
+					<input name="modle" placeholder="Model" />
 				</div>
 				<div class="pure-control-group">
-					<label for="age">Age</label>
-					<form:input path="age" placeholder="Age" />
+					<label for="fuelType">Fuel Type</label>
+					<input name="fuelType" placeholder="Fuel Type" />
 				</div>
 				<div class="pure-control-group">
-					<label for="password">password</label>
-					<form:password path="password" placeholder="password" />
+					<label >Compatible type</label>
+					
+					<input type="radio" name="acVehicle" value="y"/> AC
+					<input type="radio" name="acVehicle" value="n"/> Non AC
+				</div> 
+				<div class="pure-control-group">
+					<label for="seats">Seats</label>
+					<input  name="seats" placeholder="Seats" />
 				</div>
 				<div class="pure-control-group">
-					<label for="confirmpassword">confirm password</label>
-					<form:password path="confirmpassword" placeholder="confirm password" />
-				</div>
-
-               <div class="pure-control-group">
-					<label for="email">email</label>
-					<input type="email" path="email" placeholder="email" autocomplete="off" />
-				</div>
-				<div class="pure-control-group">
-					<label for="confirmemail">confirm email</label>
-					<input type="email" path="confirmemail" placeholder="confirm email" autocomplete="off" />
-				</div>
+					<label for="File to upload">File to upload</label>
+					<input type="file" name='file'/>
+					<label for="Name">Name</label>
+					<input name='fileName'/>
+				</div> 
 
 
-				<form:input path="id" type="hidden" />
+				<input name="id" type="hidden" />
 				<input type="submit" value="Register" />
-
 
 			</fieldset>
 		</form:form>

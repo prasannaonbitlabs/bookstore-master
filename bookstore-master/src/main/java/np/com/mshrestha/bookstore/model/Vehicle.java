@@ -8,48 +8,56 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "vehicle")
 public class Vehicle {
 	
 	@Id
-	@Column(name="vehicleId")
+	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long vehicleId;
+	private Long id;
 	
-	public Long getId() {
-		return vehicleId;
-	}
-	public void setId(Long vehicleId) {
-		this.vehicleId = vehicleId;
-	}
+	
 	private String regNumber;
-	@ManyToOne
-	@JoinColumn(name="vehicleTypeId")
-	private VehicleType vehicleType;
+//	@ManyToOne
+//	@JoinColumn(name="vehicleTypeId")
+//	private VehicleType vehicleType;
 	
 	private String chassieNumber;
 	private String enginNumger;
 	private String modle;
 	private String fuelType;
-	private boolean isAcvehicle;
+	private String acVehicle;
 	private int seats;
+	private String fileName;
+	@Transient
+	private String file;
 	
-	public String getRegNumber() {
-		return regNumber;
-	}
-	public void setRegNumber(String regNumber) {
-		this.regNumber = regNumber;
-	}
-	public VehicleType getvehicleType() {
+	
+	/*public VehicleType getvehicleType() {
 		return vehicleType;
 	}
 	public void setvehicleType(VehicleType vehicleType) {
 		this.vehicleType = vehicleType;
+	}*/
+	
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 	public String getChassieNumber() {
 		return chassieNumber;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public void setChassieNumber(String chassieNumber) {
 		this.chassieNumber = chassieNumber;
@@ -72,19 +80,30 @@ public class Vehicle {
 	public void setFuelType(String fuelType) {
 		this.fuelType = fuelType;
 	}
-	public boolean isAcvehicle() {
-		return isAcvehicle;
-	}
-	public void setAcvehicle(boolean isAcvehicle) {
-		this.isAcvehicle = isAcvehicle;
-	}
 	public int getSeats() {
 		return seats;
 	}
 	public void setSeats(int seats) {
 		this.seats = seats;
 	}
+	public String getAcVehicle() {
+		return acVehicle;
+	}
+	public void setAcVehicle(String acVehicle) {
+		this.acVehicle = acVehicle;
+	}
 	
+	public String getRegNumber() {
+		return regNumber;
+	}
 	
-
+	public void setRegNumber(String regNumber) {
+		this.regNumber = regNumber;
+	}
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
+	}
 }

@@ -14,26 +14,28 @@ import javax.persistence.Table;
 @Table(name = "vehicalType")
 public class VehicleType {
 	@Id
-	@Column(name="vehicalTypeId")
+	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long vehicalTypeId;
-	private String vehicalType;
-	@OneToMany(mappedBy="vehical")
-	private Set<Vehicle> vehical;
-	
-	
+	private Long id;
 	public Long getId() {
-		return vehicalTypeId;
+		return id;
 	}
-	public Set<Vehicle> getVehical() {
+	public void setId(Long id) {
+		this.id = id;
+	}
+	private String vehicalType;
+	/*@OneToMany(mappedBy="vehical")
+	private Set<Vehicle> vehical;*/
+	
+	
+	
+	/*public Set<Vehicle> getVehical() {
 		return vehical;
 	}
 	public void setVehical(Set<Vehicle> vehical) {
 		this.vehical = vehical;
-	}
-	public void setId(Long vehicalTypeId) {
-		this.vehicalTypeId = vehicalTypeId;
-	}
+	}*/
+	
 	public String getVehicalType() {
 		return vehicalType;
 	}
