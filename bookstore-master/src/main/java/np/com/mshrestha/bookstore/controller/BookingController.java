@@ -2,10 +2,14 @@ package np.com.mshrestha.bookstore.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import np.com.mshrestha.bookstore.model.Booking;
+import np.com.mshrestha.bookstore.model.Person;
 import np.com.mshrestha.bookstore.service.BookingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -41,11 +45,18 @@ public class BookingController {
 	
 	@RequestMapping(value = "/booking", method = RequestMethod.GET)
 	public String register(@ModelAttribute("booking") Booking Booking,
-			BindingResult result,Map<String, Object> map) {
+			BindingResult result,Map<String, Object> map, HttpServletRequest req) {
 
 		   map.put("booking", new Booking());
-
-		return "/booking/booking";
+		   
+		   if ((Person)req.getSession().getAttribute("person")!= null){
+		    	map.put("booking", new Booking());
+		    	return "/booking/booking";
+		    	
+		    }else{
+		    	map.put("person", new Person());
+		    	return "/person/login";
+		    }
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

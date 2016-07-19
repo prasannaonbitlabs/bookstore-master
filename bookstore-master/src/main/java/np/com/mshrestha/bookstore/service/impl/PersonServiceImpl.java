@@ -42,4 +42,10 @@ public class PersonServiceImpl implements PersonService {
 
 	}
 
+	@Transactional
+	public Person doLogin(String email, String password) {
+		// TODO Auto-generated method stub
+		return personDao.doLogin(email, password);
+	}
+
 }

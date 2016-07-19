@@ -26,7 +26,7 @@ public class Person {
 	
     String firstName;
     String lastName;
-    String adress;
+    String address;
     String city;
     int age;
     String password;
@@ -87,11 +87,11 @@ public class Person {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public String getCity() {
 		return city;

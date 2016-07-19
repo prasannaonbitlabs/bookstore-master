@@ -3,6 +3,7 @@ package np.com.mshrestha.bookstore.dao.impl;
 import java.util.List;
 
 import np.com.mshrestha.bookstore.dao.PersonDao;
+import np.com.mshrestha.bookstore.model.AdminUser;
 import np.com.mshrestha.bookstore.model.Person;
 
 import org.hibernate.Session;
@@ -40,6 +41,14 @@ public class PersonDAOImpl implements PersonDao {
 		}
 
 	}
+	
+	public Person doLogin(String email, String password) {
+		Person person = null;
+		person = (Person)getSession().createQuery("from Person where email = ? and password = ?")
+		        .setString(0, email).setString(1, password).uniqueResult();
+	
+		return person;
+	}
 
 	private Session getSession() {
 		Session sess = getSessionFactory().getCurrentSession();
@@ -52,4 +61,8 @@ public class PersonDAOImpl implements PersonDao {
 	private SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+
+	
+	
+	
 }

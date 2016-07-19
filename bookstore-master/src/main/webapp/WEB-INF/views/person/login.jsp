@@ -59,77 +59,40 @@
 	</div>
 	<div class="well left center">
 		<div class="well-2 left">
-			   <h4>Registration Form</h4>
+			   <h4>Login Form</h4>
 				<div class="row">
 				 
 				 <br>
-					<c:url var="actionUrl" value="save" />
-
-		<form:form id="personForm" method="post"
-			action="${actionUrl }" class="pure-form pure-form-aligned">
-
-			<fieldset>
-				<c:if test="${massage ne null}">
-					<div class="alert alert-danger">
-						${massage}
-					</div>
-				</c:if>
-				
-
-				<div class="form-group col-xs-6">
-					<label for="firstName">Fist Name</label>
-					<input type="text" name="firstName" 
-						placeholder="First Name" class="form-control" />
-				</div>
-				<div class="form-group col-xs-6">
-					<label for="LastName">Last Name</label>
-					<input type="text" name="lastName" id="lastName"
-						placeholder="Last Name" maxlength="15" class="form-control" />
-				</div>
-				<div class="form-group col-xs-6">
-					<label for="city">City</label>
-					<input type="text" name="city" placeholder="City" maxlength="10"  class="form-control"/>
-				</div>
-				<div class="form-group col-xs-6">
-					<label for="address">Address</label>
-					<input type="text" name="address" placeholder="Address" class="form-control" />
-				</div>
-				<div class="form-group col-xs-6">
-					<label for="age">Age</label>
-					<input type="text"  name="age" placeholder="Age" class="form-control"/>
-				</div>
-				<div class="form-group col-xs-6">
-					<label for="password">password</label>
-					<input type="password" name="password" placeholder="password" class="form-control" />
-				</div>
-				<div class="form-group col-xs-6">
-					<label for="confirmpassword">confirm password</label>
-					<input type="password"  name="confirmpassword" placeholder="confirm password"  class="form-control"/>
-				</div>
-
-               <div class="form-group col-xs-6">
-					<label for="email">email</label>
-					<input type="email" name="email" placeholder="email" autocomplete="off" class="form-control" />
-				</div>
-				<div class="form-group col-xs-6">
-					<label for="confirmemail">confirm email</label>
-					<input type="email" name="confirmemail"  placeholder="confirm email" autocomplete="off" class="form-control" />
-				</div>
-
-
-				<input type="hidden"  name="id" />
-				<div class="form-group col-xs-6">
-				<br>
-							<input type="submit" class="btn btn-default" 
-								value="Register" />
-								<br><br><br><br>
-				</div>
-
-			</fieldset>
-		</form:form>
+					<form:form method="POST" modelAttribute="person"
+						action="/bookstore/person/personlogin">
+						<c:if test="${msg ne null && status eq -1 }">
+							<div class="alert alert-danger">${msg}</div>
+						</c:if>
+						<c:if test="${msg ne null && status eq 0 }">
+							<div class="alert alert-info">${msg}</div>
+						</c:if>
+						<div class="form-group col-xs-6">
+							<label for="email">Email</label>
+							<form:input type="email" path="email" placeholder="email"
+								autocomplete="off" class="form-control" />
+						</div>
+						<div class="form-group col-xs-6">
+							<label for="password">Password</label>
+							<form:password path="password" placeholder="password"
+								class="form-control" />
+						</div>
+						<div class="form-group col-xs-6">
+							<form:input class="btn btn-default" path="" type="submit"
+								value="Login" />
+								<br><br>
+						</div>
+					</form:form>
 				</div>
 			</div>
 			<div class ="well-2 left">
+					<a href="/bookstore/person/register"> Create an account </a><br>
+					<a href="/bookstore/">Forgot your username?</a><br>
+					<a href="/bookstore/">Forgot your password?</a><br><br>
 	      			<h3> Welcome to online booking service of  Smart Cabs (Pvt) Ltd. Please register before you placing a booking.</h3>
 	   		</div>
 	   	</div>

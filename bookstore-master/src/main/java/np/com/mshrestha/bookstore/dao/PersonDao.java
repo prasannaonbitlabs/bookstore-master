@@ -2,6 +2,7 @@ package np.com.mshrestha.bookstore.dao;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
 
 import np.com.mshrestha.bookstore.model.Person;
 
@@ -22,4 +23,6 @@ public interface PersonDao {
 	 * DELETE
 	 */
 	public void deletePerson(Long id);
+	
+	public Person doLogin(String email, String password);
 }

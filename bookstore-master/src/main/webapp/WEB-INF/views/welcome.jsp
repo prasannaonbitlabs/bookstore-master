@@ -17,28 +17,24 @@
 
 <body>
 	<header>
-		<%--  <% 
-   AdminUser adminUser = new AdminUser();
-   adminUser = (AdminUser)request.getSession().getAttribute("adminUser");
-   adminUser.getUserName();
-   System.out.print("adminUser.getUserName() " + adminUser.getUserName());
-   out.print("<h6>well come " + adminUser.getUserName()+" </h6>");
-   %> --%>
 		<h1>SMART CABS</h1>
 		<ul>
 			<li><a href="/bookstore/">Home</a></li>
 			<li><a href="/aboutus/">About</a></li>
-			<li><a href="/booking/">Book Now</a></li>
+			<li><a href="/bookstore/booking/booking">Book Now</a></li>
 			<li><a href="/contactus/">Contact</a></li>
+			
 		</ul>
 	</header>
 
 	<div class="blended_grid">
+	
+	   
 		<div class="topBanner">
 		  <div class='container4'>
-				<form:form method="POST" action="/bookstore/person/register">
+		  <img  src="/bookstore/web-resources/css/font-awesome-4.0.3/css/taxi-4.jpg" height="200" width="1050" alt="Banner Image"/>
+				<form:form method="POST" action="/bookstore/person/login">
 					<input class ='btn-5 btn' type="submit" value="BOOK NOW" />
-
 				</form:form>
 			</div>
 		</div>

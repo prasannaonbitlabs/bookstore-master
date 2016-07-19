@@ -2,7 +2,7 @@ package np.com.mshrestha.bookstore.service;
 
 import java.util.List;
 
-
+import np.com.mshrestha.bookstore.model.AdminUser;
 import np.com.mshrestha.bookstore.model.Person;
 
 
@@ -25,4 +25,6 @@ public interface PersonService {
 	 * DELETE
 	 */
 	public void deletePerson(Long id);
+	
+	public Person doLogin(String email, String password);
 }
