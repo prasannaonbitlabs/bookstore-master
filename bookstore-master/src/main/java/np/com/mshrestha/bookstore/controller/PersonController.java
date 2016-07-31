@@ -9,7 +9,10 @@ import javax.servlet.http.HttpSession;
 
 import np.com.mshrestha.bookstore.model.Booking;
 import np.com.mshrestha.bookstore.model.Person;
+import np.com.mshrestha.bookstore.service.EmailService;
 import np.com.mshrestha.bookstore.service.PersonService;
+import np.com.mshrestha.bookstore.service.SessionIdentifierGeneratorService;
+import np.com.mshrestha.bookstore.service.impl.SessionIdentifierGeneratorServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +30,10 @@ public class PersonController {
 
 	@Autowired
 	private PersonService personService;
+	@Autowired
+	private EmailService  emailService;
+	@Autowired
+	private SessionIdentifierGeneratorService  sessionIdentifierGeneratorService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@ModelAttribute("person")  Person person,
@@ -121,6 +128,17 @@ public class PersonController {
 
 		return "/person/register";
 	}
+	
+	@RequestMapping(value = "/activeUser", method = RequestMethod.GET)
+	public String activeUser(HttpServletRequest request,@RequestParam("token") String token
+			,Map<String, Object> map) {
+		
+         personService.updateUserStatus(token);
+         map.put("person", new Person());
+	     return "/person/login";
+	}
+	
+	
 
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -152,12 +170,22 @@ public class PersonController {
 			person.setAddress(address);
 			person.setCity(city);
 			person.setAge(age);
-			person.setPassword(confirmpassword);
-			person.setEmail(confirmemail);
+			person.setPassword(password);
+			person.setEmail(email);
 			person.setId(id);
+			person.setUserStatus("pending");
+			person.setSessionId(sessionIdentifierGeneratorService.nextSessionId());
 			
 			personService.savePerson(person);
-			return "redirect:listPerson";
+			
+			map.put("email",email);
+			map.put("name",firstName);
+			map.put("sessionId",person.getSessionId());
+			emailService.sendMail(map);
+			
+			map.put("massage","Succesfully registred. Your login infomation has been send to your email");
+			map.put("massageHeader","Succesfully registred");
+			return "/massage/info";
 		}
 		
 	}

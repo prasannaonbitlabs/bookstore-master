@@ -27,4 +27,5 @@ public interface PersonService {
 	public void deletePerson(Long id);
 	
 	public Person doLogin(String email, String password);
+	public void updateUserStatus(String seesionId);
 }

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import np.com.mshrestha.bookstore.model.AdminUser;
 import np.com.mshrestha.bookstore.model.Book;
+import np.com.mshrestha.bookstore.model.Vehicle;
 import np.com.mshrestha.bookstore.service.AdminUserService;
+import np.com.mshrestha.bookstore.service.VehicleService;
 
 
 @Controller
@@ -24,6 +26,9 @@ public class AdminManager {
 	
 	@Autowired
 	private AdminUserService adminUserService;
+	
+	@Autowired
+	private VehicleService vehicleService;
 	
 	@RequestMapping(value = { "/", "/welcome" })
 	public String welcome(ModelMap  map) {
@@ -61,6 +66,27 @@ public class AdminManager {
 			model.addAttribute("msg",loginMsg);
 		}
 		return "welcome";
+	}
+	
+	
+	@RequestMapping(value = { "/dashboard"})
+	public String dashboard(@ModelAttribute("adminUser") AdminUser adminUser,
+			BindingResult result,ModelMap  map) {
+		
+		map.put("vehicle", new Vehicle());
+		map.put("vehicleList", vehicleService.listVehicles());
+		
+		map.put("vehicleRegister", "0");
+		map.put("vehicleListId", "1");
+		
+		return "dashboard";
+	}
+	
+	@RequestMapping(value = { "/paly"})
+	public String paly(@ModelAttribute("adminUser") AdminUser adminUser,
+			BindingResult result) {
+		
+		return "redirect:http://localhost:8080/Wap/JSP/ErrorPage.jsp?error=System_error";
 	}
 
 

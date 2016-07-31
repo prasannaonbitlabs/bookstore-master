@@ -1,5 +1,7 @@
 package np.com.mshrestha.bookstore.model;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,8 +37,23 @@ public class Person {
     String email;
     @Transient
     String confirmemail;
+    String userStatus;
+    String sessionId;
     
     
+
+	public String getSessionId() {
+		return sessionId;
+	}
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+	public String getUserStatus() {
+		return userStatus;
+	}
+	public void setUserStatus(String userStatus) {
+		this.userStatus = userStatus;
+	}
 	public String getEmail() {
 		return email;
 	}

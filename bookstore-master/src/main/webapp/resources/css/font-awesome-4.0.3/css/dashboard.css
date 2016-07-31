@@ -1,0 +1,10 @@
+
+
+.dropdown-menu > li > a:hover {
+    background-color: #d3d7cf;
+    background-image: none;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+    color: #fce94f;
+    background-color: #4270f6;
+}

@@ -48,4 +48,10 @@ public class PersonServiceImpl implements PersonService {
 		return personDao.doLogin(email, password);
 	}
 
+	@Transactional
+	public void updateUserStatus(String seesionId) {
+		personDao.updateUserStatus(seesionId);
+		
+	}
+
 }

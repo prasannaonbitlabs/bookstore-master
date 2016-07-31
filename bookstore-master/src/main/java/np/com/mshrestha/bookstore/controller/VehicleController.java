@@ -28,13 +28,14 @@ public class VehicleController {
 	@Autowired
 	private VehicleService vehicleService;
 
-	@RequestMapping(value = { "/", "/listVehicles" })
+	@RequestMapping(value = { "/", "/vehicleList" })
 	public String listVehicles(ModelMap  map) {
 
-		map.put("Vehicle", new Vehicle());
-		map.put("VehicleList", vehicleService.listVehicles());
+		map.put("vehicle", new Vehicle());
+		map.put("vehicleList", vehicleService.listVehicles());
+		map.put("vehicleListId", "1");
 
-		return "/Vehicle/listVehicles";
+		return "dashboard";
 	}
 	
 	@RequestMapping(value = "/vehicleRegister", method = RequestMethod.GET)
@@ -42,24 +43,24 @@ public class VehicleController {
 			BindingResult result,Map<String, Object> map) {
 
 		   map.put("vehicle", new Vehicle());
-
-		return "/vehicle/registerVehicle";
+		   map.put("vehicleRegister", "1");
+		return "dashboard";
 	}
 
 	@RequestMapping("/get/{VehicleId}")
 	public String getVehicle(@PathVariable Long id, Map<String, Object> map) {
 
-		Vehicle Vehicle = vehicleService.getVehicle(id);
+		Vehicle vehicle = vehicleService.getVehicle(id);
 
-		map.put("Vehicle", Vehicle);
-
-		return "/Vehicle/VehicleForm";
+		map.put("vehicle", vehicle);
+		map.put("vehicleRegister", "1");
+		return "dashboard";
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveVehicle(HttpServletRequest request,
 			@RequestParam("file") MultipartFile file, 
-			@RequestParam("fileName") String fileName,
+	/*		@RequestParam("fileName") String fileName,*/
 			@RequestParam("regNumber") String regNumber,
 			@RequestParam("chassieNumber") String chassieNumber,
 			@RequestParam("enginNumger") String enginNumger,
@@ -80,7 +81,7 @@ public class VehicleController {
 					dir.mkdirs();
 
 				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + fileName);
+						+ File.separator + file.getOriginalFilename());
 				BufferedOutputStream stream = new BufferedOutputStream(
 						new FileOutputStream(serverFile));
 				stream.write(bytes);
@@ -90,7 +91,7 @@ public class VehicleController {
 				vehicle.setRegNumber(regNumber);
 				vehicle.setChassieNumber(chassieNumber);
 				vehicle.setEnginNumger(enginNumger);
-				vehicle.setFileName(fileName);
+				vehicle.setFileName(file.getOriginalFilename());
 				vehicle.setModle(modle);
 				vehicle.setFuelType(fuelType);
 				vehicle.setId(id);
@@ -98,14 +99,14 @@ public class VehicleController {
 				vehicle.setSeats(seats);
 				
 				vehicleService.saveVehicle(vehicle);
-				return "redirect:listVehicles";
+				return "redirect:vehicleList";
 
 				
 			} catch (Exception e) {
-				return "You failed to upload " + fileName + " => " + e.getMessage();
+				return "You failed to upload " + file.getOriginalFilename() + " => " + e.getMessage();
 			}
 		} else {
-			return "You failed to upload " + fileName
+			return "You failed to upload " + file.getOriginalFilename()
 					+ " because the file was empty.";
 		}
 	}
@@ -114,6 +115,7 @@ public class VehicleController {
 	public String deleteVehicle(@PathVariable("id") Long id) {
 
 		vehicleService.deleteVehicle(id);
-		return "redirect:/Vehicle/listVehicles";
+		
+		return "redirect:/vehicle/vehicleList";
 	}
 }

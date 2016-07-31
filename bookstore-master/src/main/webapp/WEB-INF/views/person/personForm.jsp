@@ -24,7 +24,7 @@
 				maxlength="10" />
 		</div>
 		<div class="pure-control-group">
-			<label for="adress">Adress</label>
+			<label for="address">Adress</label>
 			<form:input path="adress" placeholder="Adress" />
 		</div>
 		<div class="pure-control-group">

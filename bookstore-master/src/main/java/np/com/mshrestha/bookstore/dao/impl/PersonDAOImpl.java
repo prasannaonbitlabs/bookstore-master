@@ -42,10 +42,20 @@ public class PersonDAOImpl implements PersonDao {
 
 	}
 	
+	
+	public void updateUserStatus(String sessionId) {
+		String hqlUpdate = "update Person p set p.userStatus = :newStatus where p.sessionId = :sessionId";
+		getSession().createQuery( hqlUpdate )
+		        .setString( "newStatus", "active" )
+		        .setString( "sessionId", sessionId )
+		        .executeUpdate();
+		
+	}
+	
 	public Person doLogin(String email, String password) {
 		Person person = null;
-		person = (Person)getSession().createQuery("from Person where email = ? and password = ?")
-		        .setString(0, email).setString(1, password).uniqueResult();
+		person = (Person)getSession().createQuery("from Person where email = ? and password = ? and userStatus = ?")
+		        .setString(0, email).setString(1, password).setString(2, "active").uniqueResult();
 	
 		return person;
 	}
@@ -61,6 +71,8 @@ public class PersonDAOImpl implements PersonDao {
 	private SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+
+	
 
 	
 	
