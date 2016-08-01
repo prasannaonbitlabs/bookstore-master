@@ -14,7 +14,7 @@
 					<th width="12%">RegNumber</th>
 					<th width="12%">Engine Number</th>
 					<th width="12%">Model</th>
-					<th width="12%">fuelType</th>
+					<th width="12%">Fuel Type</th>
 					<th width="12%">Ac/Non Ac</th>
 					<th width="12%">Seats</th>
 					<th width="12%"></th>
@@ -32,16 +32,9 @@
 						<td><c:out value="${vehicle.seats}" /></td>
 
 						<td><nobr>
-								<%-- <button class="btn btn-primary"
-									onclick="editvehicle(${vehicle.id});">
-
-									<i class="fa fa-pencil"></i> Edit
-								</button> --%>
-								
-								<form:form method="GET" action="/bookstore/vehicle/get/${vehicle.id}">
-										<input class="btn btn-primary" type="submit">
-										<i class="fa fa-pencil"></i> Edit
-								</form:form> 
+								<a class="btn btn-primary"
+									href="/bookstore/vehicle/get/${vehicle.id}"> <i class="fa fa-times"></i>Edit
+								</a>
 
 								<a class="btn btn-primary"
 									onclick="return confirm('Are you sure you want to delete this vehicle?');"

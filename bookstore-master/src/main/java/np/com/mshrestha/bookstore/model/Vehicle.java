@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @Entity
 @Table(name = "vehicle")
 public class Vehicle {
@@ -33,7 +35,7 @@ public class Vehicle {
 	private int seats;
 	private String fileName;
 	@Transient
-	private String file;
+	private MultipartFile file;
 	
 	
 	/*public VehicleType getvehicleType() {
@@ -49,6 +51,12 @@ public class Vehicle {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	public String getChassieNumber() {
 		return chassieNumber;
@@ -100,10 +108,5 @@ public class Vehicle {
 	public void setRegNumber(String regNumber) {
 		this.regNumber = regNumber;
 	}
-	public String getFile() {
-		return file;
-	}
-	public void setFile(String file) {
-		this.file = file;
-	}
+	
 }
