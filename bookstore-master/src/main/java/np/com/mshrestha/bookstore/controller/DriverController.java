@@ -20,13 +20,15 @@ public class DriverController {
 	@Autowired
 	private DriverService driverService;
 
-	@RequestMapping(value = { "/", "/listDriver" })
+	@RequestMapping(value = { "/", "/driverList" })
 	public String listDriver(Map<String, Object> map) {
 
 		map.put("driver", new Driver());
 		map.put("driverList", driverService.listDrivers());
 
-		return "/driver/listDrivers";
+		map.put("driversList", "1");
+		
+		return "dashboard";
 	}
 
 	@RequestMapping("/get/{driverId}")
@@ -35,17 +37,19 @@ public class DriverController {
 		Driver driver = driverService.getDriver(driverId);
 
 		map.put("driver", driver);
+		map.put("driverRegister", "1");
 
-		return "/driver/driverForm";
+		return "dashboard";
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(@ModelAttribute("driver") Driver driver,
 			BindingResult result,Map<String, Object> map) {
 
 		   map.put("driver", new Driver());
+		   map.put("driverRegister", "1");
 
-		return "/driver/register";
+		return "dashboard";
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -53,7 +57,7 @@ public class DriverController {
 			BindingResult result,Map<String, Object> map) {
 		
 			driverService.saveDriver(driver);
-			return "redirect:listDriver";
+			return "redirect:driverList";
 
 	}
 

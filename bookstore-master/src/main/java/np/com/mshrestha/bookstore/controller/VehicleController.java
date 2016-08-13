@@ -82,7 +82,6 @@ public class VehicleController {
 
 				String rootPath = System.getProperty("catalina.home");
 				String fileCode =  sessionIdentifierGeneratorService.nextSessionId();
-				System.out.println("rootPath " + rootPath);
 				File dir = new File(rootPath + File.separator + "tmpFiles");
 				if (!dir.exists())
 					dir.mkdirs();
@@ -94,19 +93,15 @@ public class VehicleController {
 						new FileOutputStream(serverFile));
 				stream.write(bytes);
 				stream.close();
-				vehicle.setFileName(fileCode+
-						vehicle.getFile().getOriginalFilename());
-				vehicleService.saveVehicle(vehicle);
-				return "redirect:vehicleList";
-
-				
+			
+					vehicle.setFileName(fileCode+vehicle.getFile().getOriginalFilename());
+			
 			} catch (Exception e) {
 				return "You failed to upload " + vehicle.getFile().getOriginalFilename() + " => " + e.getMessage();
 			}
-		} else {
-			return "You failed to upload " + vehicle.getFile().getOriginalFilename()
-					+ " because the file was empty.";
 		}
+		vehicleService.saveVehicle(vehicle);
+		return "redirect:vehicleList";
 	}
 
 	@RequestMapping("/delete/{id}")

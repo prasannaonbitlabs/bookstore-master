@@ -1,0 +1,79 @@
+<%@page import="np.com.mshrestha.bookstore.model.AdminUser"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
+<div class="nav-bar">
+	<div class="nav-bar-contain">
+		<br> Driver Register
+	</div>
+
+</div>
+<br>
+<div class="content">
+
+	<div class="row">
+		<div class="form-group col-xs-6">
+<form:form method="GET" action="/bookstore/driver/driverList">
+		<input class="btn btn-primary" value="Driver List"  type="submit">
+</form:form>
+<br>
+</div>
+</div>
+<div class="well left center">
+	<div class="well-2 left">
+		<h4>Driver Registration Form</h4>
+		<div class="row">
+
+			<br>
+			<c:url var="actionUrl" value="save" />
+
+			<br>
+			<form:form id="vehicleForm" modelAttribute="driver" method="post"
+				enctype="multipart/form-data" action="http://localhost:8080/bookstore/driver/save"
+				class="pure-form pure-form-aligned">
+
+				<fieldset>
+					<c:if test="${massage ne null}">
+						<div class="alert alert-danger">${massage}</div>
+					</c:if>
+
+					<div class="form-group col-xs-6">
+						<label for="regNumber">First Name</label> 
+						<form:input 
+							placeholder="First Name" path="firstName" class="form-control" />
+					</div>
+					<div class="form-group col-xs-6">
+						<label for="Last Name">Last Name</label> <form:input
+							path="lastName" placeholder="Last Name" 
+							class="form-control" />
+					</div>
+					<div class="form-group col-xs-6">
+						<label for="joinDate">Join Date</label> <form:input
+							 path="joinDate" placeholder="Join Date"  type="date"
+							class="form-control" />
+					</div>
+					<div class="form-group col-xs-6">
+						<label for="modle">Nic</label> <form:input 
+							placeholder="Nic"  path="nic"  class="form-control" />
+					</div>
+					<div class="form-group col-xs-6">
+						<label for="address">Address</label> <form:input 
+							placeholder="Address" path="address" class="form-control" />
+					</div>
+					<div class="form-group col-xs-6">
+						<label for="mobile">Mobile</label> <form:input 
+							placeholder="Mobile" path="mobile" class="form-control" />
+					</div>
+
+					<div class="form-group col-xs-6">
+						<form:input path="id" type="hidden" />
+						 <input type="submit" value="Register" class="btn btn-primary" />
+					</div>
+				</fieldset>
+			</form:form>
+		</div>
+	</div>
+	</div>
+	</div>

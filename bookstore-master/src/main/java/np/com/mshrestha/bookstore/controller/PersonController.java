@@ -106,7 +106,8 @@ public class PersonController {
 		map.put("person", new Person());
 		map.put("personList", personService.listPersons());
 
-		return "/person/listPersons";
+		map.put("personListId", "1");
+		return "dashboard";
 	}
 
 	@RequestMapping("/get/{personId}")

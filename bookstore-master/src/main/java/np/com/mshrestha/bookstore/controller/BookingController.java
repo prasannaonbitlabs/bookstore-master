@@ -29,8 +29,8 @@ public class BookingController {
 
 		map.put("booking", new Booking());
 		map.put("bookingList", bookingService.listBookings());
-
-		return "/booking/listBookings";
+        map.put("bookingListId","1");
+		return "dashboard";
 	}
 
 	@RequestMapping("/get/{bookingId}")
@@ -58,6 +58,19 @@ public class BookingController {
 		    	return "/person/login";
 		    }
 	}
+	@RequestMapping(value = "/adminBooking", method = RequestMethod.GET)
+	public String adminBooking(@ModelAttribute("booking") Booking Booking,
+			BindingResult result,Map<String, Object> map, HttpServletRequest req) {
+
+		   map.put("booking", new Booking());
+
+		   map.put("booking", new Booking());
+		   map.put("adminBooking", "1");
+		   return "dashboard";
+		   
+	}
+	
+	
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveBooking(@ModelAttribute("booking") Booking booking,

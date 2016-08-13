@@ -2,13 +2,26 @@ package np.com.mshrestha.bookstore.model;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "driver")
 public class Driver {
+	
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String  firstName;
 	private String lastName;
 	private Date joinDate;
 	private String nic;
-	private String adress;
+	private String address;
 	private int mobile;
 	private double salary;
 	
@@ -43,11 +56,11 @@ public class Driver {
 	public void setNic(String nic) {
 		this.nic = nic;
 	}
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	public int getMobile() {
 		return mobile;
