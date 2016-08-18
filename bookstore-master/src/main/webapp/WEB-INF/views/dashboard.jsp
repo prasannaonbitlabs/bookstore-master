@@ -28,6 +28,12 @@
 	<%@ include file="../views/booking/bookingList.jsp" %>
 </c:if>
 
+<c:if test="${vehicleAllocationId ne null && vehicleAllocationId eq 1}">
+	<%@ include file="../views/vehicleAllocation/vehicleAllocationForm.jsp" %>
+</c:if>
+
+
+
 
 
 

@@ -1,9 +1,12 @@
 package np.com.mshrestha.bookstore.controller;
 
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import np.com.mshrestha.bookstore.model.AdminUser;
 import np.com.mshrestha.bookstore.model.Booking;
 import np.com.mshrestha.bookstore.model.Person;
 import np.com.mshrestha.bookstore.service.BookingService;
@@ -25,22 +28,63 @@ public class BookingController {
 	private BookingService bookingService;
 
 	@RequestMapping(value = { "/", "/listBooking" })
-	public String listBooking(Map<String, Object> map) {
+	public String listBooking(Map<String, Object> map,HttpServletRequest req) {
 
-		map.put("booking", new Booking());
-		map.put("bookingList", bookingService.listBookings());
-        map.put("bookingListId","1");
-		return "dashboard";
+		if (req.getSession().getAttribute("adminUser")!=null){
+			map.put("booking", new Booking());
+			map.put("bookingList", bookingService.listBookings());
+	        map.put("bookingListId","1");
+			return "dashboard";
+			
+		}else {
+			map.put("adminUser",new AdminUser());
+			return "/admin/logginFrom";
+		}
 	}
 
 	@RequestMapping("/get/{bookingId}")
-	public String getBooking(@PathVariable Long bookingId, Map<String, Object> map) {
-         System.out.println("Booking Id " + bookingId);
-		Booking Booking = bookingService.getBooking(bookingId);
+	public String getBooking(@PathVariable Long bookingId, Map<String, Object> map,HttpServletRequest req) {
+		
+		if (req.getSession().getAttribute("adminUser")!=null){
+			Booking booking = bookingService.getBooking(bookingId);
+			
+			Map<String,String> vehicleTypeList = new LinkedHashMap<String,String>();
+			vehicleTypeList.put("VAN","VAN");
+			vehicleTypeList.put("CAR","CAR");
+			vehicleTypeList.put("THREE WEEL","THREE WEEL");
 
-		map.put("Booking", Booking);
+			map.put("vehicleTypeId", booking.getVehicalType()); 
+			map.put("vehicleTypeList", vehicleTypeList);
+			
+			
+			
+			Map<String,String> comfortableTypeList = new LinkedHashMap<String,String>();
+			comfortableTypeList.put("AC","AC");
+			comfortableTypeList.put("NON AC","NON AC");
 
-		return "/booking/bookingForm";
+			map.put("comfortableTypeId", booking.getComfortableType()); 
+			map.put("comfortableTypeList", comfortableTypeList);
+
+			
+
+			Map<String,String> statusList = new LinkedHashMap<String,String>();
+			statusList.put("pending","pending");
+			statusList.put("confirm","confirm");
+			statusList.put("cancel","cancel");
+
+			map.put("statusId", booking.getStatus()); 
+			map.put("statusList", statusList);
+			
+			map.put("booking", booking);
+			map.put("adminBooking", "1");
+			return "dashboard";
+			
+		}else {
+			map.put("adminUser",new AdminUser());
+			return "/admin/logginFrom";
+		}
+
+
 	}
 	
 	@RequestMapping(value = "/booking", method = RequestMethod.GET)
@@ -58,15 +102,53 @@ public class BookingController {
 		    	return "/person/login";
 		    }
 	}
+	
+	
 	@RequestMapping(value = "/adminBooking", method = RequestMethod.GET)
 	public String adminBooking(@ModelAttribute("booking") Booking Booking,
 			BindingResult result,Map<String, Object> map, HttpServletRequest req) {
+		
+		
+		if (req.getSession().getAttribute("adminUser")!=null){
+			Map<String,String> vehicleTypeList = new LinkedHashMap<String,String>();
+			vehicleTypeList.put("VAN","VAN");
+			vehicleTypeList.put("CAR","CAR");
+			vehicleTypeList.put("THREE WEEL","THREE WEEL");
+	
+			map.put("vehicleTypeId", "THREE WEEL"); 
+			map.put("vehicleTypeList", vehicleTypeList);
+			
+			
+			
+			Map<String,String> comfortableTypeList = new LinkedHashMap<String,String>();
+			comfortableTypeList.put("AC","AC");
+			comfortableTypeList.put("NON AC","NON AC");
+	
+			map.put("vehicleTypeId", "AC"); 
+			map.put("comfortableTypeList", comfortableTypeList);
 
-		   map.put("booking", new Booking());
+			
 
-		   map.put("booking", new Booking());
-		   map.put("adminBooking", "1");
-		   return "dashboard";
+			Map<String,String> statusList = new LinkedHashMap<String,String>();
+			statusList.put("pending","pending");
+			statusList.put("confirm","confirm");
+			statusList.put("cancel","cancel");
+	
+			map.put("statusId", "pending"); 
+			map.put("statusList", statusList);
+			
+			
+
+		    map.put("booking", new Booking());
+		    map.put("adminBooking", "1");
+		    return "dashboard";
+			
+		}else {
+			map.put("adminUser",new AdminUser());
+			return "/admin/logginFrom";
+		}
+		
+			
 		   
 	}
 	
@@ -84,9 +166,18 @@ public class BookingController {
 	}
 
 	@RequestMapping("/delete/{bookingId}")
-	public String deleteBooking(@PathVariable("bookingId") Long id) {
+	public String deleteBooking(@PathVariable("bookingId") Long id,Map<String, Object> map,
+			HttpServletRequest req) {
+		
+		if (req.getSession().getAttribute("adminUser")!=null){
+			bookingService.deleteBooking(id);
+			return "redirect:/booking/listBooking";
+			
+		}else {
+			map.put("adminUser",new AdminUser());
+			return "/admin/logginFrom";
+		}
 
-		bookingService.deleteBooking(id);
-		return "redirect:/booking/listBooking";
+		
 	}
 }

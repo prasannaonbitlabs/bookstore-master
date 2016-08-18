@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import np.com.mshrestha.bookstore.model.AdminUser;
 import np.com.mshrestha.bookstore.model.Book;
 import np.com.mshrestha.bookstore.model.Vehicle;
 import np.com.mshrestha.bookstore.service.SessionIdentifierGeneratorService;
@@ -39,77 +40,133 @@ public class VehicleController {
 	private SessionIdentifierGeneratorService  sessionIdentifierGeneratorService;
 
 	@RequestMapping(value = { "/", "/vehicleList" })
-	public String listVehicles(ModelMap  map) {
+	public String listVehicles(ModelMap  map,HttpServletRequest req) {
+		
+		if (req.getSession().getAttribute("adminUser")!=null){
+			map.put("vehicle", new Vehicle());
+			map.put("vehicleList", vehicleService.listVehicles());
+			map.put("vehicleListId", "1");
 
-		map.put("vehicle", new Vehicle());
-		map.put("vehicleList", vehicleService.listVehicles());
-		map.put("vehicleListId", "1");
+			return "dashboard";
 
-		return "dashboard";
+			
+		}else {
+			map.put("adminUser",new AdminUser());
+			return "/admin/logginFrom";
+		}
+
+		
 	}
 	
 	@RequestMapping(value = "/vehicleRegister", method = RequestMethod.GET)
 	public String register(@ModelAttribute("vehicle") Vehicle vehicle,
-			BindingResult result,Map<String, Object> map) {
+			BindingResult result,Map<String, Object> map,HttpServletRequest req) {
+		
+		if (req.getSession().getAttribute("adminUser")!=null){
+			
+			map.put("vehicle", new Vehicle());
+			map.put("vehicleRegister", "1");
+			return "dashboard";
 
-		   map.put("vehicle", new Vehicle());
-		   map.put("vehicleRegister", "1");
-		return "dashboard";
+			
+		}else {
+			map.put("adminUser",new AdminUser());
+			return "/admin/logginFrom";
+		}
+
+		 
 	}
 
 	@RequestMapping("/get/{id}")
-	public String getVehicle(@PathVariable Long id, Map<String, Object> map) {
-
-		Vehicle vehicle = vehicleService.getVehicle(id);
+	public String getVehicle(@PathVariable Long id, Map<String, Object> map,
+			HttpServletRequest req) {
 		
-		System.out.println("vehicle.getFileName() " + vehicle.getFileName());
+		if (req.getSession().getAttribute("adminUser")!=null){
+			
+			Vehicle vehicle = vehicleService.getVehicle(id);
+			
+			System.out.println("vehicle.getFileName() " + vehicle.getFileName());
 
-		map.put("vehicle", vehicle);
-		map.put("img",vehicle.getFileName());
-		/*map.put("ext",FilenameUtils.getExtension(vehicle.getFileName()));*/
-		map.put("vehicleRegister", "1");
-		return "dashboard";
+			map.put("vehicle", vehicle);
+			map.put("img",vehicle.getFileName());
+			/*map.put("ext",FilenameUtils.getExtension(vehicle.getFileName()));*/
+			map.put("vehicleRegister", "1");
+			return "dashboard";
+
+			
+		}else {
+			map.put("adminUser",new AdminUser());
+			return "/admin/logginFrom";
+		}
+
+		
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveVehicle(@ModelAttribute("vehicle") Vehicle vehicle,
-			BindingResult result,HttpServletRequest request
+			BindingResult result,HttpServletRequest req,Map<String, Object> map
 			
 			) {
-		if (!vehicle.getFile().isEmpty()) {
-			try {
-				byte[] bytes = vehicle.getFile().getBytes();
-
-				String rootPath = System.getProperty("catalina.home");
-				String fileCode =  sessionIdentifierGeneratorService.nextSessionId();
-				File dir = new File(rootPath + File.separator + "tmpFiles");
-				if (!dir.exists())
-					dir.mkdirs();
-
-				File serverFile = new File(dir.getAbsolutePath()
-						+ File.separator + fileCode+
-						vehicle.getFile().getOriginalFilename());
-				BufferedOutputStream stream = new BufferedOutputStream(
-						new FileOutputStream(serverFile));
-				stream.write(bytes);
-				stream.close();
+		
+		if (req.getSession().getAttribute("adminUser")!=null){
 			
-					vehicle.setFileName(fileCode+vehicle.getFile().getOriginalFilename());
 			
-			} catch (Exception e) {
-				return "You failed to upload " + vehicle.getFile().getOriginalFilename() + " => " + e.getMessage();
+			if (!vehicle.getFile().isEmpty()) {
+				try {
+					byte[] bytes = vehicle.getFile().getBytes();
+
+					String rootPath = System.getProperty("catalina.home");
+					String fileCode =  sessionIdentifierGeneratorService.nextSessionId();
+					File dir = new File(rootPath + File.separator + "tmpFiles");
+					if (!dir.exists())
+						dir.mkdirs();
+
+					File serverFile = new File(dir.getAbsolutePath()
+							+ File.separator + fileCode+
+							vehicle.getFile().getOriginalFilename());
+					BufferedOutputStream stream = new BufferedOutputStream(
+							new FileOutputStream(serverFile));
+					stream.write(bytes);
+					stream.close();
+				
+						vehicle.setFileName(fileCode+vehicle.getFile().getOriginalFilename());
+				
+				} catch (Exception e) {
+					return "You failed to upload " + vehicle.getFile().getOriginalFilename() + " => " + e.getMessage();
+				}
 			}
+			vehicleService.saveVehicle(vehicle);
+			return "redirect:vehicleList";
+
+			
+		}else {
+			map.put("adminUser",new AdminUser());
+			return "/admin/logginFrom";
 		}
-		vehicleService.saveVehicle(vehicle);
-		return "redirect:vehicleList";
+		
+		
+		 
+	
 	}
 
 	@RequestMapping("/delete/{id}")
-	public String deleteVehicle(@PathVariable("id") Long id) {
-
-		vehicleService.deleteVehicle(id);
+	public String deleteVehicle(@PathVariable("id") Long id,
+			HttpServletRequest req,Map<String, Object> map) {
 		
-		return "redirect:/vehicle/vehicleList";
+		if (req.getSession().getAttribute("adminUser")!=null){
+			
+			vehicleService.deleteVehicle(id);
+			
+			return "redirect:/vehicle/vehicleList";
+
+			
+		}else {
+			map.put("adminUser",new AdminUser());
+			return "/admin/logginFrom";
+		}
+
+
+		
 	}
 	
 	

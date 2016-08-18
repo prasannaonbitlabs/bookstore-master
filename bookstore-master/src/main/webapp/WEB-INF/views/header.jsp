@@ -109,11 +109,11 @@
 					<li><a href="#">Reservation Confirmation</a></li>
                 </ul>
                 
-                 <li  data-toggle="collapse" data-target="#vehicleAllocation" class="collapsed active">
+                 <li  data-toggle="collapse" data-target="#VehicleAllocation" class="collapsed active">
                   <a href="#"><i class="fa fa-car fa-lg"></i> Vehicle Allocation<span class="arrow"></span></a>
                 </li>
-                <ul class="sub-menu collapse" id="vehicleAllocation">
-                   <li><a href="#">Allocate Hire</a></li>
+                <ul class="sub-menu collapse" id="VehicleAllocation">
+                   <li><a href="/bookstore/vehicleAllocation/vehicleAllocation">Allocate Hire</a></li>
 				   <li><a href="#">Close Hire</a></li>
 					<li><a href="#">Vehicle Attendance</a></li>
 				   <li><a href="#">Driver Attendance</a></li>

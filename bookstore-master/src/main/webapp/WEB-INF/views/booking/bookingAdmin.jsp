@@ -54,7 +54,7 @@
 								placeholder="Adress" maxlength="10" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
-							<label for="modle">adressLineTwo</label>
+							<label for="modle">Address Line Two</label>
 							<form:input name="adressLineTwo" placeholder="adressLineTwo"
 								path="adressLineTwo" class="form-control" />
 						</div>
@@ -76,17 +76,37 @@
 						<div class="form-group col-xs-6">
 							<label for="vehicalType">Vehicle Type</label>
 							<form:select path="vehicalType" class="form-control">
-								<option value="VAN">VAN</option>
-								<option value="CAR">CAR</option>
-								<option value="TREE WHEEL">TREE WHEEL</option>
-								<option value="BUS">BUS</option>
+								<option value=""></option>
+								
+								<c:forEach items="${vehicleTypeList}" var="vehicleType">
+								<c:choose>
+									<c:when test="${vehicleType.getKey() == vehicleTypeId}">
+										<option id="${vehicleType.getKey()}" value="${vehicleType.getKey()}" selected>${vehicleType.getValue()}</option>
+									</c:when>
+									<c:otherwise>
+										<option id="${vehicleType.getKey()}" value="${vehicleType.getKey()}">${vehicleType.getValue()}</option>
+									</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								
 							</form:select>
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="ComfortableType">Comfortable Type</label>
-							<form:select path="ComfortableType" class="form-control">
-								<option value="Ac">AC</option>
-								<option value="NonAc">NON AC</option>
+							<form:select path="comfortableType" class="form-control">
+								<option value=""></option>
+								
+								<c:forEach items="${comfortableTypeList}" var="comfortableType">
+								<c:choose>
+									<c:when test="${comfortableType.getKey() == comfortableTypeId}">
+										<option id="${comfortableType.getKey()}" value="${comfortableType.getKey()}" selected>${comfortableType.getValue()}</option>
+									</c:when>
+									<c:otherwise>
+										<option id="${comfortableType.getKey()}" value="${comfortableType.getKey()}">${comfortableType.getValue()}</option>
+									</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								
 							</form:select>
 						</div>
 						<div class="form-group col-xs-6">
@@ -96,8 +116,27 @@
 						</div>
 
 						<div class="form-group col-xs-6">
+							<label for="status">Reservation Status</label>
+							<form:select path="status" class="form-control">
+								<option value=""></option>
+								
+								<c:forEach items="${statusList}" var="status">
+								<c:choose>
+									<c:when test="${status.getKey() == statusId}">
+										<option id="${status.getKey()}" value="${status.getKey()}" selected>${status.getValue()}</option>
+									</c:when>
+									<c:otherwise>
+										<option id="${status.getKey()}" value="${status.getKey()}">${status.getValue()}</option>
+									</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								
+							</form:select>
+						</div>
+
+						<div class="form-group col-xs-6">
 							<form:input path="id" type="hidden" />
-							<input type="submit" value="Booking" class="btn btn-primary" />
+							<input type="submit" value="Submit" class="btn btn-primary" />
 						</div>
 					</fieldset>
 				</form:form>

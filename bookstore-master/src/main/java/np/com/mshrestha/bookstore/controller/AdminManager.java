@@ -37,57 +37,57 @@ public class AdminManager {
 	
 	@RequestMapping(value = { "/login"})
 	public String login(@ModelAttribute("adminUser") AdminUser adminUser,
-			BindingResult result) {
+			BindingResult result,ModelMap  map) {
+		
+		map.put("adminUser",adminUser);
 		return "/admin/logginFrom";
 	}
 
 	@RequestMapping("/adminlogin")
-	public String AdminLogin(ModelMap model, HttpServletRequest req, @RequestParam("userName") String username,  @RequestParam("password") String password){
+	public String AdminLogin(ModelMap model, HttpServletRequest req, @RequestParam("userName") 
+	String username,  @RequestParam("password") String password,ModelMap  map){
 		String loginMsg = "Login Success!";
-		try {
+
 			
 			AdminUser adminUser = adminUserService.doLogin(username,password);
 			if(adminUser==null){
 				loginMsg = "Invalid Username  Passwords";
-				model.addAttribute("stat","-1");
-				model.addAttribute("msg",loginMsg);
+				map.put("stat","-1");
+				map.put("msg",loginMsg);
+				map.put("adminUser",new AdminUser());
+				return "/admin/logginFrom";
 			}else{
-				model.addAttribute("stat","0");
-				model.addAttribute("msg",loginMsg);
+				map.put("stat","0");
+				map.put("msg",loginMsg);
 				HttpSession sess = req.getSession();
 				sess.setAttribute("adminUser", adminUser);
+				return "redirect:dashboard";
 				
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("stat","-1");
-			loginMsg = "Unknown Error Occured!";
-			model.addAttribute("msg",loginMsg);
-		}
-		return "welcome";
 	}
 	
 	
 	@RequestMapping(value = { "/dashboard"})
 	public String dashboard(@ModelAttribute("adminUser") AdminUser adminUser,
-			BindingResult result,ModelMap  map) {
+			BindingResult result,ModelMap  map,HttpServletRequest req) {
 		
-		map.put("vehicle", new Vehicle());
-		map.put("vehicleList", vehicleService.listVehicles());
 		
-		map.put("vehicleRegister", "0");
-		map.put("vehicleListId", "1");
+		if (req.getSession().getAttribute("adminUser")!=null){
+			map.put("vehicle", new Vehicle());
+			map.put("vehicleList", vehicleService.listVehicles());
+			
+			map.put("vehicleRegister", "0");
+			map.put("vehicleListId", "1");
+			
+			return "dashboard";
+			
+		}else {
+			
+			map.put("adminUser",new AdminUser());
+			return "/admin/logginFrom";
+		}
 		
-		return "dashboard";
+		
 	}
-	
-	@RequestMapping(value = { "/paly"})
-	public String paly(@ModelAttribute("adminUser") AdminUser adminUser,
-			BindingResult result) {
-		
-		return "redirect:http://localhost:8080/Wap/JSP/ErrorPage.jsp?error=System_error";
-	}
-
 
 }

@@ -29,7 +29,8 @@
 					<th width="12%">Destination</th>
 					<th width="12%">Date</th>
 					<th width="12%">Vehicle Type</th>
-					<th width="12%">Comfortable Type</th>
+					<th width="7%">Comfortable Type</th>
+					<th width="12%">Status</th>
 
 					<th width="12%"></th>
 				</tr>
@@ -46,6 +47,7 @@
 						<td><c:out value="${booking.dateFrom}" /></td>
 						<td><c:out value="${booking.vehicalType}" /></td>
 						<td><c:out value="${booking.comfortableType}" /></td>
+						<td><c:out value="${booking.status}" /></td>
 
 						<td><nobr>
 								<a class="btn btn-primary"

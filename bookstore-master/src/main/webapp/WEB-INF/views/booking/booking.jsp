@@ -138,6 +138,13 @@
 							<%-- <form:input class="btn btn-default" path="" type="submit"
 						value="Submit" /> --%>
 						</div>
+						
+						<form:input path="status" type="hidden" value="pending" />
+						<div class="form-group col-xs-6">
+							<%-- <form:input class="btn btn-default" path="" type="submit"
+						value="Submit" /> --%>
+						</div>
+						 
 
 						<div class="form-group col-xs-6">
 							<br>
