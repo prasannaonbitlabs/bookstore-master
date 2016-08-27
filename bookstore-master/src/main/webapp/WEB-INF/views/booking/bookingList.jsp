@@ -1,12 +1,18 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <div class="nav-bar">
 	<div class="nav-bar-contain">
-		<br> Booking List
+		<div class="row">
+			<br>
+			<div class="form-group col-xs-10">Booking List</div>
+			<div class="form-group col-xs-2">
+				<input type="image" src="http://localhost:8080/bookstore/web-resources/css/images/profile.jpg"
+					class="img-circle" alt="Cinque Terre" data-toggle="modal"
+					data-target="#myModal" width="35" height="35" alt="Submit">
+			</div>
+		</div>
 	</div>
-
 </div>
 <br>
 <div class="content">
@@ -52,7 +58,7 @@
 						<td><nobr>
 								<a class="btn btn-primary"
 									href="/bookstore/booking/get/${booking.id}"> <i
-									class="fa fa-times"></i>Edit
+									></i>Edit
 								</a> <a class="btn btn-primary"
 									onclick="return confirm('Are you sure you want to delete this booking?');"
 									href="/bookstore/booking/delete/${booking.id}"> <i

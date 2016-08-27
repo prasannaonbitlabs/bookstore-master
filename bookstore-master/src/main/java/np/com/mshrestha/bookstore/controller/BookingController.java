@@ -38,7 +38,7 @@ public class BookingController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 	}
 
@@ -81,7 +81,7 @@ public class BookingController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 
@@ -145,7 +145,7 @@ public class BookingController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 		
 			
@@ -175,7 +175,7 @@ public class BookingController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 		

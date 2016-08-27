@@ -36,7 +36,7 @@ public class VehicleAllocationController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 		
@@ -56,7 +56,7 @@ public class VehicleAllocationController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 	}
 	
@@ -75,7 +75,7 @@ public class VehicleAllocationController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 		
 		
@@ -94,7 +94,7 @@ public class VehicleAllocationController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 		
@@ -111,7 +111,7 @@ public class VehicleAllocationController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 

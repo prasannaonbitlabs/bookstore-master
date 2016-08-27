@@ -52,7 +52,7 @@ public class VehicleController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 		
@@ -66,12 +66,13 @@ public class VehicleController {
 			
 			map.put("vehicle", new Vehicle());
 			map.put("vehicleRegister", "1");
+			map.put("profileName", req.getSession().getAttribute("adminUser"));
 			return "dashboard";
 
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 		 
@@ -96,7 +97,7 @@ public class VehicleController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 		
@@ -141,7 +142,7 @@ public class VehicleController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 		
 		
@@ -162,7 +163,7 @@ public class VehicleController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 

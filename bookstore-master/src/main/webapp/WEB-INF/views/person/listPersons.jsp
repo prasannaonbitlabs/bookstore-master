@@ -3,9 +3,16 @@
 
 <div class="nav-bar">
 	<div class="nav-bar-contain">
-		<br> Customer List
+		<div class="row">
+			<br>
+			<div class="form-group col-xs-10">Customer List</div>
+			<div class="form-group col-xs-2">
+				<input type="image" src="http://localhost:8080/bookstore/web-resources/css/images/profile.jpg"
+					class="img-circle" alt="Cinque Terre" data-toggle="modal"
+					data-target="#myModal" width="35" height="35" alt="Submit">
+			</div>
+		</div>
 	</div>
-
 </div>
 
 <br><br>
@@ -39,7 +46,7 @@
 
 						<td><nobr>
 								<a class="btn btn-primary"
-									href="/bookstore/person/get/${person.id}"> <i class="fa fa-times"></i>Edit
+									href="/bookstore/person/get/${person.id}"> <i></i>Edit
 								</a>
 
 								<a class="btn btn-primary"

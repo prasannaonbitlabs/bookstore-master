@@ -3,13 +3,20 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <div class="nav-bar">
 	<div class="nav-bar-contain">
-		<br> Driver Register
+		<div class="row">
+			<br>
+			<div class="form-group col-xs-10">Driver Register</div>
+			<div class="form-group col-xs-2">
+				<input type="image" src="http://localhost:8080/bookstore/web-resources/css/images/profile.jpg"
+					class="img-circle" alt="Cinque Terre" data-toggle="modal"
+					data-target="#myModal" width="35" height="35" alt="Submit">
+			</div>
+		</div>
 	</div>
-
 </div>
+
 <br>
 <div class="content">
 

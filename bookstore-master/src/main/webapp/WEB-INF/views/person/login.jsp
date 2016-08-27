@@ -30,13 +30,13 @@
 <body>
    <div class="container">
 	<header >
-		<%--  <% 
+<%-- 		  <% 
    AdminUser adminUser = new AdminUser();
    adminUser = (AdminUser)request.getSession().getAttribute("adminUser");
    adminUser.getUserName();
    System.out.print("adminUser.getUserName() " + adminUser.getUserName());
    out.print("<h6>well come " + adminUser.getUserName()+" </h6>");
-   %> --%>
+   %>  --%>
 
 		<h1>SMART CABS</h1>
 		<ul>

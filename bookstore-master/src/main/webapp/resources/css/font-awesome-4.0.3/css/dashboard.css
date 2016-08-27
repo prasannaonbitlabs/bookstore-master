@@ -172,6 +172,17 @@
         
         
 }
+.nav-bar-contain-profile{
+		margin-left: 65%;
+		min-height: 40px;
+	    background-color: #489ee7;
+	    font-size: 20px;
+  		font-weight: 600;
+/*   		font-family: 'Helvetica Neue', 'Nunito', sans-serif; */
+        color: #ffffff;
+        
+        
+}
 /* body {
   margin: 0px;
   padding: 0px;

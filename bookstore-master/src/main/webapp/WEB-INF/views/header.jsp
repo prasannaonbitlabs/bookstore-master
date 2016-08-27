@@ -2,6 +2,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%AdminUser adminUser = new AdminUser();
+	adminUser = (AdminUser)request.getSession().getAttribute("adminUser");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,63 +29,8 @@
 </head>
 <body>
 
-		<!-- <nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<ul class="nav navbar-nav">
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Reference Data <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="/bookstore/vehicle/vehicleRegister">Vehicle Registration</a></li>
-							<li><a href="/bookstore/driver/register">Driver Registration</a></li>
-							<li><a href="/bookstore/person/listPerson">Customer</a></li>
-						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Reservation<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="/bookstore/booking/adminBooking">Vehicle Reservation</a></li>
-							<li><a href="#">Reservation Confirmation</a></li>
-						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Vehicle Allocation<span
-							class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Allocate Hire</a></li>
-							<li><a href="#">Close Hire</a></li>
-							<li><a href="#">Vehicle Attendance</a></li>
-							<li><a href="#">Driver Attendance</a></li>
-						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Finance Management<span
-							class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Income</a></li>
-							<li><a href="#">Expenses</a></li>
-						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Reports<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Income Reports</a></li>
-							<li><a href="#">Expenses Reports</a></li>
-						</ul></li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">User Management<span
-							class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">User Account</a></li>
-							<li><a href="#">Change Password</a></li>
-							<li><a href="#">Create User Role</a></li>
-						</ul></li>
-
-				</ul>
-			</div>
-		</nav> -->
-		
-		
-		
-
 <div class="nav-side-menu">
-    <div class="brand">Brand Logo</div>
+    <div class="brand"><font style="color:olive;">SMART CABS</font></div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
   
         <div class="menu-list">
@@ -146,4 +96,29 @@
 
             </ul>
      </div>
+</div>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">HELLO <%=adminUser.getUserName().toUpperCase()%> </h4>
+				<br>
+				<button type="button" class="btn btn-default">EDIT PROFILE</button>
+				<a href="/bookstore/admin/logout" class="btn btn-default"
+					role="button">LOGOUT</a>
+			</div>
+			<div class="modal-body">
+				<p>Some text in the modal.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+	</div>
 </div>

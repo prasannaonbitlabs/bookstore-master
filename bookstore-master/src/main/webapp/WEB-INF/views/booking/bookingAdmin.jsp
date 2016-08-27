@@ -5,9 +5,16 @@
 
 <div class="nav-bar">
 	<div class="nav-bar-contain">
-		<br> Booking Form
+		<div class="row">
+			<br>
+			<div class="form-group col-xs-10">Booking Form</div>
+			<div class="form-group col-xs-2">
+				<input type="image" src="http://localhost:8080/bookstore/web-resources/css/images/profile.jpg"
+					class="img-circle" alt="Cinque Terre" data-toggle="modal"
+					data-target="#myModal" width="35" height="35" alt="Submit">
+			</div>
+		</div>
 	</div>
-
 </div>
 <br>
 <div class="content">

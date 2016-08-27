@@ -36,7 +36,7 @@ public class DriverController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 		
@@ -56,7 +56,7 @@ public class DriverController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 		
       
@@ -74,7 +74,7 @@ public class DriverController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 		 
@@ -91,7 +91,7 @@ public class DriverController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 		
 			
@@ -107,7 +107,7 @@ public class DriverController {
 			
 		}else {
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 
 		

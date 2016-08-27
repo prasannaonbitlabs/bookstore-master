@@ -3,9 +3,16 @@
 
 <div class="nav-bar">
 	<div class="nav-bar-contain">
-		<br> Vehicle List
+		<div class="row">
+			<br>
+			<div class="form-group col-xs-10">Vehicle List</div>
+			<div class="form-group col-xs-2">
+				<input type="image" src="../web-resources/css/images/profile.jpg"
+					class="img-circle" alt="Cinque Terre" data-toggle="modal"
+					data-target="#myModal" width="35" height="35" alt="Submit">
+			</div>
+		</div>
 	</div>
-
 </div>
 <br>
 <div class="content">
@@ -27,7 +34,7 @@
 				<th width="12%">Engine Number</th>
 				<th width="12%">Model</th>
 				<th width="12%">Fuel Type</th>
-				<th width="12%">Ac/Non Ac</th>
+				<th width="12%">Ac</th>
 				<th width="12%">Seats</th>
 				<th width="12%"></th>
 			</tr>
@@ -46,8 +53,7 @@
 
 					<td><nobr>
 							<a class="btn btn-primary"
-								href="/bookstore/vehicle/get/${vehicle.id}"> <i
-								class="fa fa-times"></i>Edit
+								href="/bookstore/vehicle/get/${vehicle.id}"> <i></i>Edit
 							</a> <a class="btn btn-primary"
 								onclick="return confirm('Are you sure you want to delete this vehicle?');"
 								href="/bookstore/vehicle/delete/${vehicle.id}"> <i

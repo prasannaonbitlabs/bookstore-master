@@ -3,16 +3,23 @@
 
 <div class="nav-bar">
 	<div class="nav-bar-contain">
-		<br> Driver List
+		<div class="row">
+			<br>
+			<div class="form-group col-xs-10">Driver List</div>
+			<div class="form-group col-xs-2">
+				<input type="image" src="http://localhost:8080/bookstore/web-resources/css/images/profile.jpg"
+					class="img-circle" alt="Cinque Terre" data-toggle="modal"
+					data-target="#myModal" width="35" height="35" alt="Submit">
+			</div>
+		</div>
 	</div>
-
 </div>
 <br>
 <div class="content">
 	<div class="row">
 		<div class="form-group col-xs-6">
 			<form:form method="GET" action="/bookstore/driver/register">
-				<input class="btn btn-primary" value=" Add Driver +" type="submit">
+				<input class="btn btn-primary" value=" Add Driver" type="submit">
 			</form:form>
 		</div>
 	</div>
@@ -45,7 +52,7 @@
 
 						<td><nobr>
 								<a class="btn btn-primary"
-									href="/bookstore/driver/get/${driver.id}"> <i class="fa fa-times"></i>Edit
+									href="/bookstore/driver/get/${driver.id}"> <i ></i>Edit
 								</a>
 
 								<a class="btn btn-primary"

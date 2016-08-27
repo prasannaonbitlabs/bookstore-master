@@ -55,7 +55,7 @@ public class AdminManager {
 				map.put("stat","-1");
 				map.put("msg",loginMsg);
 				map.put("adminUser",new AdminUser());
-				return "/admin/logginFrom";
+				return "redirect:/admin/login";
 			}else{
 				map.put("stat","0");
 				map.put("msg",loginMsg);
@@ -84,10 +84,28 @@ public class AdminManager {
 		}else {
 			
 			map.put("adminUser",new AdminUser());
-			return "/admin/logginFrom";
+			return "redirect:/admin/login";
 		}
 		
 		
+	}
+	
+	@RequestMapping(value = { "/logout"})
+	public String logout(@ModelAttribute("adminUser") AdminUser adminUser,
+			BindingResult result,ModelMap  map,HttpServletRequest req) {
+		
+		
+		if (req.getSession().getAttribute("adminUser")!=null){
+			req.getSession().setAttribute("adminUser", null);
+			map.put("adminUser",new AdminUser());
+			return "redirect:/admin/login";
+			
+		}else {
+			
+			map.put("adminUser",new AdminUser());
+			return "redirect:/admin/login";
+		}
+
 	}
 
 }
