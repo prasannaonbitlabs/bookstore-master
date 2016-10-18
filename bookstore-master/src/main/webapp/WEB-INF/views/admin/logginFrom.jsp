@@ -48,9 +48,9 @@
 				<form:form id="logginForm" modelAttribute="adminUser" method="post"
 					action="${actionUrl}" class="form-signin">
 
-					<form:input class="form-control" path="userName" placeholder="User Name" />
+					<form:input class="form-control" path="userName" required placeholder="User Name" />
 
-					<form:password class="form-control" path="password" placeholder="password" />
+					<form:password class="form-control" path="password"  required placeholder="password" />
 
 					<button class="btn btn-lg btn-primary btn-block" type="submit">
 						Sign in</button>

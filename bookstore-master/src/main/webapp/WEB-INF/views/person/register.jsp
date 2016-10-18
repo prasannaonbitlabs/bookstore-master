@@ -20,6 +20,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+		src='<c:url value="/web-resources/js/person/person.js"/>'></script>
 
 <link href="${mainCss}" rel="stylesheet" />
 <link href="${customCss}" rel="stylesheet" />
@@ -70,57 +72,60 @@
 
 			<fieldset>
 				<c:if test="${massage ne null}">
-					<div class="alert alert-danger">
+					<div  class="alert alert-danger">
 						${massage}
 					</div>
 				</c:if>
+				<div id="display" class="alert alert-danger">
+						
+				</div>
 				
 
 				<div class="form-group col-xs-6">
 					<label for="firstName">Fist Name</label>
-					<input type="text" name="firstName" 
+					<input type="text" required="required" name="firstName" 
 						placeholder="First Name" class="form-control" />
 				</div>
 				<div class="form-group col-xs-6">
 					<label for="LastName">Last Name</label>
-					<input type="text" name="lastName" id="lastName"
+					<input type="text" required="required" name="lastName" id="lastName"
 						placeholder="Last Name" maxlength="15" class="form-control" />
 				</div>
 				<div class="form-group col-xs-6">
 					<label for="city">City</label>
-					<input type="text" name="city" placeholder="City" maxlength="10"  class="form-control"/>
+					<input type="text" required="required"name="city" placeholder="City" maxlength="10"  class="form-control"/>
 				</div>
 				<div class="form-group col-xs-6">
 					<label for="address">Address</label>
-					<input type="text" name="address" placeholder="Address" class="form-control" />
+					<input type="text" required="required" name="address" placeholder="Address" class="form-control" />
 				</div>
 				<div class="form-group col-xs-6">
 					<label for="age">Age</label>
-					<input type="text"  name="age" placeholder="Age" class="form-control"/>
+					<input type="number" required="required" id="age"  name="age" placeholder="Age" class="form-control"/>
 				</div>
 				<div class="form-group col-xs-6">
 					<label for="password">password</label>
-					<input type="password" name="password" placeholder="password" class="form-control" />
+					<input type="password" required="required" id ="password" name="password" placeholder="password" class="form-control" />
 				</div>
 				<div class="form-group col-xs-6">
 					<label for="confirmpassword">confirm password</label>
-					<input type="password"  name="confirmpassword" placeholder="confirm password"  class="form-control"/>
+					<input type="password" required="required" id ="confirmpassword" name="confirmpassword" placeholder="confirm password"  class="form-control"/>
 				</div>
 
                <div class="form-group col-xs-6">
 					<label for="email">email</label>
-					<input type="email" name="email" placeholder="email" autocomplete="off" class="form-control" />
+					<input type="email" name="email" id ="email"  required="required" placeholder="email" autocomplete="off" class="form-control" />
 				</div>
 				<div class="form-group col-xs-6">
 					<label for="confirmemail">confirm email</label>
-					<input type="email" name="confirmemail"  placeholder="confirm email" autocomplete="off" class="form-control" />
+					<input type="email" required="required" id ="confirmemail" name="confirmemail"  placeholder="confirm email" autocomplete="off" class="form-control" />
 				</div>
 
 
 				<input type="hidden"  name="id" />
 				<div class="form-group col-xs-6">
 				<br>
-							<input type="submit" class="btn btn-default" 
+							<input type="button" onclick="validatePerson()" class="btn btn-default" 
 								value="Register" />
 								<br><br><br><br>
 				</div>

@@ -70,7 +70,7 @@ public class AdminManager {
 	@RequestMapping(value = { "/dashboard"})
 	public String dashboard(@ModelAttribute("adminUser") AdminUser adminUser,
 			BindingResult result,ModelMap  map,HttpServletRequest req) {
-		
+
 		
 		if (req.getSession().getAttribute("adminUser")!=null){
 			map.put("vehicle", new Vehicle());

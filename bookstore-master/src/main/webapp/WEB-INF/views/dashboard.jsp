@@ -31,6 +31,11 @@
 <c:if test="${vehicleAllocationId ne null && vehicleAllocationId eq 1}">
 	<%@ include file="../views/vehicleAllocation/vehicleAllocationForm.jsp" %>
 </c:if>
+<c:if test="${driversReportID ne null && driversReportID eq 1}">
+	<%@ include file="../views/reports/driversReport.jsp" %>
+</c:if>
+
+
 
 
 

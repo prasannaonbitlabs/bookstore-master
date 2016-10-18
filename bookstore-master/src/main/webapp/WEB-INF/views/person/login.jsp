@@ -73,12 +73,12 @@
 						</c:if>
 						<div class="form-group col-xs-6">
 							<label for="email">Email</label>
-							<form:input type="email" path="email" placeholder="email"
+							<form:input type="email" required="required" path="email" placeholder="email"
 								autocomplete="off" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="password">Password</label>
-							<form:password path="password" placeholder="password"
+							<form:password path="password" required="required" placeholder="password"
 								class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
