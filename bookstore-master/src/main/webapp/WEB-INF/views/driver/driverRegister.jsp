@@ -49,29 +49,30 @@
 					<div class="form-group col-xs-6">
 						<label for="regNumber">First Name</label> 
 						<form:input 
-							placeholder="First Name" path="firstName" class="form-control" />
+							placeholder="First Name" required="required" path="firstName" class="form-control" />
 					</div>
 					<div class="form-group col-xs-6">
 						<label for="Last Name">Last Name</label> <form:input
-							path="lastName" placeholder="Last Name" 
+							path="lastName" required="required" placeholder="Last Name" 
 							class="form-control" />
 					</div>
 					<div class="form-group col-xs-6">
 						<label for="joinDate">Join Date</label> <form:input
-							 path="joinDate" placeholder="Join Date"  type="date"
+							 path="joinDate" required="required" placeholder="Join Date"  type="date"
 							class="form-control" />
 					</div>
 					<div class="form-group col-xs-6">
 						<label for="modle">Nic</label> <form:input 
-							placeholder="Nic"  path="nic"  class="form-control" />
+							placeholder="Nic" required="required" path="nic"  class="form-control" />
 					</div>
 					<div class="form-group col-xs-6">
 						<label for="address">Address</label> <form:input 
-							placeholder="Address" path="address" class="form-control" />
+							placeholder="Address" required="required" path="address" class="form-control" />
 					</div>
 					<div class="form-group col-xs-6">
-						<label for="mobile">Mobile</label> <form:input 
-							placeholder="Mobile" path="mobile" class="form-control" />
+						<label for="mobile">Mobile(format: xxx-xxxxxxx)</label> <form:input 
+							placeholder="Mobile" maxlength="11" pattern="^\d{3}-\d{7}$" required="required"  type="text"
+							path="mobile" class="form-control" />
 					</div>
 
 					<div class="form-group col-xs-6">

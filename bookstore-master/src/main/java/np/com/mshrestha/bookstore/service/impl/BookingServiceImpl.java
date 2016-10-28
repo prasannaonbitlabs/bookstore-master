@@ -35,4 +35,10 @@ public class BookingServiceImpl implements BookingService {
 		bookingDao.deleteBooking(id);;
 	}
 
+	@Transactional(readOnly = true)
+	public List<Booking> listConfirmBooking() {
+		// TODO Auto-generated method stub
+		return bookingDao.listConfirmBooking();
+	}
+
 }

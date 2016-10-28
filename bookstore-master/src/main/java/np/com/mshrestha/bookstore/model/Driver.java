@@ -22,10 +22,16 @@ public class Driver {
 	private Date joinDate;
 	private String nic;
 	private String address;
-	private int mobile;
+	private String mobile;
 	private double salary;
 	
 	
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -62,12 +68,7 @@ public class Driver {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getMobile() {
-		return mobile;
-	}
-	public void setMobile(int mobile) {
-		this.mobile = mobile;
-	}
+	
 	public double getSalary() {
 		return salary;
 	}

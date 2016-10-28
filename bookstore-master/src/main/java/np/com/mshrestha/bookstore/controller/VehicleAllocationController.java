@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import np.com.mshrestha.bookstore.model.AdminUser;
 import np.com.mshrestha.bookstore.model.Booking;
 import np.com.mshrestha.bookstore.model.VehicleAllocation;
+import np.com.mshrestha.bookstore.service.BookingService;
+import np.com.mshrestha.bookstore.service.DriverService;
 import np.com.mshrestha.bookstore.service.VehicleAllocationService;
+import np.com.mshrestha.bookstore.service.VehicleService;
 
 @Controller
 @RequestMapping("/vehicleAllocation")
@@ -24,21 +27,27 @@ public class VehicleAllocationController {
 	
 	@Autowired
 	private VehicleAllocationService vehicleAllocationService;
-	
+	@Autowired
+	private BookingService bookingService;
+	@Autowired
+	private VehicleService vehicleService;
+	@Autowired
+	private DriverService driverService;
+
 	@RequestMapping(value = { "/", "/listVehicleAllocation" })
 	public String listVehicleAllocation(ModelMap  map,HttpServletRequest req) {
 		
 		if (req.getSession().getAttribute("adminUser")!=null){
 			map.put("vehicleAllocation", new VehicleAllocation());
 			map.put("vehicleAllocationList", vehicleAllocationService.listVehicleAllocation());
-
-			return "/vehicleAllocation/listVehicleAllocation";
+			map.put("listVehicleAllocationId", "1");
+		    return "dashboard";
 			
 		}else {
 			map.put("adminUser",new AdminUser());
 			return "redirect:/admin/login";
 		}
-
+		
 		
 	}
 
@@ -48,11 +57,21 @@ public class VehicleAllocationController {
 		
 		
 		if (req.getSession().getAttribute("adminUser")!=null){
-			VehicleAllocation vehicleAllocation = vehicleAllocationService.getVehicleAllocation(vehicleAllocationId);
-
+			Booking booking = bookingService.getBooking(vehicleAllocationId);
+			VehicleAllocation vehicleAllocation  = new VehicleAllocation();
+			vehicleAllocation.setStatus(booking.getStatus());
+			vehicleAllocation.setBookingId(vehicleAllocationId);
+			vehicleAllocation.setStartFrom(booking.getCity());
+			vehicleAllocation.setDestination(booking.getDestination());
+			vehicleAllocation.setVehicletype(booking.getVehicalType());
+			vehicleAllocation.setComfortableType(booking.getComfortableType());
+			vehicleAllocation.setFromDate(booking.getDateFrom());
+			
+            map.put("VehicaleRegNumberList", vehicleService.listVehicles());
+            map.put("DriversNameList", driverService.listDrivers());
 			map.put("vehicleAllocation", vehicleAllocation);
-
-			return "/vehicleAllocation/vehicleAllocationForm";
+			map.put("vehicleAllocationId", "1");
+		    return "dashboard";
 			
 		}else {
 			map.put("adminUser",new AdminUser());
@@ -70,7 +89,6 @@ public class VehicleAllocationController {
 			map.put("vehicleAllocation", new VehicleAllocation());
 		    map.put("vehicleAllocationId", "1");
 		    
-		    System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
 		    return "dashboard";
 			
 		}else {

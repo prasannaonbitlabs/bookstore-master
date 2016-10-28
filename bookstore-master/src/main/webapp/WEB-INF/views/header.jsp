@@ -51,19 +51,19 @@
 					<li><a href="/bookstore/person/listPerson">Customer</a></li>
                 </ul>
                 
-                <li  data-toggle="collapse" data-target="#Reservation" class="collapsed active">
-                  <a href="#"><i class="fa fa-suitcase fa-lg"></i> Reservation<span class="arrow"></span></a>
+                <li  data-toggle="collapse" data-target="#Booking" class="collapsed active">
+                  <a href="#"><i class="fa fa-suitcase fa-lg"></i> Booking<span class="arrow"></span></a>
                 </li>
-                <ul class="sub-menu collapse" id="Reservation">
-                    <li><a href="/bookstore/booking/adminBooking">Vehicle Reservation</a></li>
-					<li><a href="#">Reservation Confirmation</a></li>
+                <ul class="sub-menu collapse" id="Booking">
+                    <li><a href="/bookstore/booking/adminBooking"> Booking</a></li>
+					<!-- <li><a href="#">Vehicle Reservation Confirmation</a></li> -->
                 </ul>
                 
                  <li  data-toggle="collapse" data-target="#VehicleAllocation" class="collapsed active">
                   <a href="#"><i class="fa fa-car fa-lg"></i> Vehicle Allocation<span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="VehicleAllocation">
-                   <li><a href="/bookstore/vehicleAllocation/vehicleAllocation">Allocate Hire</a></li>
+                   <li><a href="/bookstore/booking/listConfirmBooking">Allocate Hire</a></li>
 				   <li><a href="#">Close Hire</a></li>
 					<li><a href="#">Vehicle Attendance</a></li>
 				   <li><a href="#">Driver Attendance</a></li>

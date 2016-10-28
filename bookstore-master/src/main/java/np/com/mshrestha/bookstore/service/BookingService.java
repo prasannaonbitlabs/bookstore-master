@@ -17,6 +17,7 @@ public interface BookingService {
 	 */
 	public List<Booking> listBookings();
 	public Booking getBooking(Long id);
+	public List<Booking> listConfirmBooking();
 
 	/*
 	 * DELETE

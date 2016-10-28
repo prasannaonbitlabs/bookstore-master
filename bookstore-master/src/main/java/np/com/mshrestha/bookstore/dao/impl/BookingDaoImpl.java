@@ -2,13 +2,16 @@ package np.com.mshrestha.bookstore.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import np.com.mshrestha.bookstore.dao.BookingDao;
 import np.com.mshrestha.bookstore.model.Booking;
+import np.com.mshrestha.bookstore.model.Person;
 
 @Repository
 public class BookingDaoImpl implements BookingDao {
@@ -50,5 +53,12 @@ public class BookingDaoImpl implements BookingDao {
 	private SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+
+	public List<Booking> listConfirmBooking() {
+
+		return getSession().createCriteria(Booking.class)
+			    .add(Restrictions.eq("status", "confirm")).list();
+	}
+
 
 }

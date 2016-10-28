@@ -20,14 +20,9 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src='<c:url value="/web-resources/js/booking/booking.js"/>'></script>
 
-<script type="text/javascript">
-	$(function() {
-		$('#datetimepicker1').datetimepicker({
-			language : 'pt-BR'
-		});
-	});
-</script>
 
 <link href="${mainCss}" rel="stylesheet" />
 <link href="${customCss}" rel="stylesheet" />
@@ -41,14 +36,11 @@
 			<h1>SMART CABS</h1>
 			<ul>
 				<li><a href="/bookstore/">Home</a></li>
-				<li><a href="/aboutus/">About</a></li>
-				<li><a href="/bookstore/booking/booking">Book Now</a></li>
-				<li><a href="/contactus/">Contact</a></li>
+				<li><a href="/bookstore/">About</a></li>
+				<li><a href="/bookstore/person/login">Book Now</a></li>
+				<li><a href="/bookstore/">Contact</a></li>
 				<li><a href="/bookstore/person/logout">logout</a></li>
 			</ul>
-			<!-- 		<ul>
-			<li><a href="/bookstore/person/logout">logout</a></li>
-		</ul> -->
 		</header>
 		<div class="well left center">
 
@@ -57,7 +49,12 @@
 				width="1300px" height="20px" class="img-responsive"
 				alt="Banner Image" /> <br> <br>
 			<c:url var="actionUrl" value="save" />
-			<h4>Booking Form</h4>
+			
+			<c:if test="${bookingMsg ne null }">
+				<div class="alert alert-info">${bookingMsg}</div>
+			</c:if>
+			<c:if test="${bookingMsg eq null }">
+				<h4>Booking Form</h4>
 			<div class="row">
 
 				<form:form id="bookingForm" modelAttribute="booking" method="post"
@@ -76,19 +73,21 @@
 						<div class="form-group col-xs-6">
 							<label for="customerName">Name</label>
 							<form:input name="customerName" path="customerName"
-								placeholder="Name" class="form-control" />
+								placeholder="Name" required="required" id="customerName"
+								class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="telephonenumber">Phone Number</label>
-							<form:input path="telephonenumber" placeholder="Phone Number"
-								maxlength="10" class="form-control" />
+							<form:input type="text" path="telephonenumber"
+								placeholder="Phone Number" required="required" maxlength="10"
+								pattern="^\d{10}$" class="form-control" />
 						</div>
 
 						<div class="form-group col-xs-6">
-							<label for="telephonenumber">Address (Hire Starting
+							<label for="streetAdress">Address (Hire Starting
 								Location)</label>
-							<form:input path="streetAdress" placeholder="Street Adress"
-								class="form-control" />
+							<form:input path="streetAdress" required="required"
+								placeholder="Street Adress" class="form-control" />
 						</div>
 
 						<div class="form-group col-xs-6">
@@ -98,54 +97,48 @@
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="city">City</label>
-							<form:input path="city" placeholder="City" class="form-control" />
-						</div>
-
-						<div class="form-group col-xs-6">
-							<label for="destination">Hire Ends Location</label>
-							<form:input path="destination" placeholder="Hire Ends Location"
+							<form:input path="city" required="required" placeholder="City"
 								class="form-control" />
 						</div>
 
 						<div class="form-group col-xs-6">
-							<label for="dateFrom">Date From</label>
-							<form:input type="date" path="dateFrom" class="form-control" />
+							<label for="destination">Hire Ends Location</label>
+							<form:input path="destination" required="required"
+								placeholder="Hire Ends Location" class="form-control" />
+						</div>
+
+						<div class="form-group col-xs-6 ">
+							<label for="dateFrom">Date and Time</label>
+							<form:input id="dateFrom" type="datetime-local"
+								required="required" path="dateFrom" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="vehicalType">Vehicle Type</label>
-							<form:select path="vehicalType" class="form-control">
-								<option value="VAN" >VAN</option>
+							<form:select required="required" path="vehicalType"
+								class="form-control">
+								<option value="VAN">VAN</option>
 								<option value="CAR">CAR</option>
 								<option value="TREE WHEEL">TREE WHEEL</option>
 								<option value="BUS">BUS</option>
-							</form:select>  
+							</form:select>
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="ComfortableType">Comfortable Type</label>
-							<form:select path="ComfortableType" class="form-control" >
-								<option value="Ac" >AC</option>
+							<form:select required="required" path="ComfortableType"
+								class="form-control">
+								<option value="Ac">AC</option>
 								<option value="NonAc">NON AC</option>
-							</form:select>  
+							</form:select>
 						</div>
 
 						<div class="form-group col-xs-6">
 							<label for="email">Email</label>
-							<form:input type="email" path="email" class="form-control" />
+							<form:input type="email" required="required" path="email"
+								class="form-control" />
 						</div>
 
 						<form:input path="id" type="hidden" />
-						<div class="form-group col-xs-6">
-							<%-- <form:input class="btn btn-default" path="" type="submit"
-						value="Submit" /> --%>
-						</div>
-						
 						<form:input path="status" type="hidden" value="pending" />
-						<div class="form-group col-xs-6">
-							<%-- <form:input class="btn btn-default" path="" type="submit"
-						value="Submit" /> --%>
-						</div>
-						 
-
 						<div class="form-group col-xs-6">
 							<br>
 							<form:input class="btn btn-default" path="" type="submit"
@@ -156,6 +149,9 @@
 					</fieldset>
 				</form:form>
 			</div>
+			</c:if>
+			
+			
 		</div>
 	</div>
 	<footer> Copyright © Smart Cabs Pvt Ltd </footer>

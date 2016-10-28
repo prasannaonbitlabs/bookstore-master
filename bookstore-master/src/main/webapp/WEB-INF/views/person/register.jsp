@@ -67,7 +67,7 @@
 				 <br>
 					<c:url var="actionUrl" value="save" />
 
-		<form:form id="personForm" method="post"
+		<form:form id="personForm" method="post" onsubmit="return validatePerson()" 
 			action="${actionUrl }" class="pure-form pure-form-aligned">
 
 			<fieldset>
@@ -93,7 +93,7 @@
 				</div>
 				<div class="form-group col-xs-6">
 					<label for="city">City</label>
-					<input type="text" required="required"name="city" placeholder="City" maxlength="10"  class="form-control"/>
+					<input type="text" required="required" name="city" placeholder="City" maxlength="10"  class="form-control"/>
 				</div>
 				<div class="form-group col-xs-6">
 					<label for="address">Address</label>
@@ -125,7 +125,7 @@
 				<input type="hidden"  name="id" />
 				<div class="form-group col-xs-6">
 				<br>
-							<input type="button" onclick="validatePerson()" class="btn btn-default" 
+							<input type='submit'  class="btn btn-default" 
 								value="Register" />
 								<br><br><br><br>
 				</div>

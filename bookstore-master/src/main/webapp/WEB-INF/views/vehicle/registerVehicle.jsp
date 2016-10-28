@@ -53,52 +53,49 @@
 
 						<div class="form-group col-xs-6">
 							<label for="regNumber">Reg Number</label>
-							<form:input name="regNumber" placeholder="Reg Number"
+							<form:input name="regNumber" required="required" placeholder="Reg Number"
 								path="regNumber" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="chassieNumber">Chassis Number</label>
-							<form:input name="chassieNumber" path="chassieNumber"
+							<form:input name="chassieNumber" required="required" path="chassieNumber"
 								placeholder="Chassis Number" maxlength="15" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="enginNumger">Engine Number</label>
-							<form:input name="enginNumger" path="enginNumger"
+							<form:input name="enginNumger" required="required" path="enginNumger"
 								placeholder="Engine Number" maxlength="10" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="modle">Model</label>
-							<form:input name="modle" placeholder="Model" path="modle"
+							<form:input name="modle" required="required" placeholder="Model" path="modle"
 								class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="fuelType">Fuel Type</label>
-							<form:input name="fuelType" placeholder="Fuel Type"
+							<form:input name="fuelType" required="required" placeholder="Fuel Type"
 								path="fuelType" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label class="radio-inline"> <form:radiobutton
-									path="acVehicle" name="acVehicle" value="y" class="radio" />
+									path="acVehicle" required="required" name="acVehicle" value="y" class="radio" />
 								AC
 							</label> <label class="radio-inline"> <form:radiobutton
-									path="acVehicle" name="acVehicle" value="n" class="radio" />
+									path="acVehicle" required="required" name="acVehicle" value="n" class="radio" />
 								Non AC
 							</label>
 						</div>
 
 						<div class="form-group col-xs-6">
 							<label for="seats">Seats</label>
-							<form:input name="seats" placeholder="Seats" path="seats"
+							<form:input name="seats" required="required" placeholder="Seats" path="seats"
 								class="form-control" />
 						</div>
 
 						<div class="form-group col-xs-6">
 
-							<!-- <img src="cinqueterre.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236"> -->
-
-							<!-- <label for="File to upload">File to upload</label>  -->
 							<form:input type="file" path="file" name='file' />
-							<form:input type='hidden' name='fileName' path="fileName"
+							<form:input type="hidden" name='fileName' path="fileName"
 								class="form-control" />
 						</div>
 

@@ -1,7 +1,14 @@
 package np.com.mshrestha.bookstore.controller;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,7 +50,7 @@ public class BookingController {
 	}
 
 	@RequestMapping("/get/{bookingId}")
-	public String getBooking(@PathVariable Long bookingId, Map<String, Object> map,HttpServletRequest req) {
+	public String getBooking(@PathVariable Long bookingId, Map<String, Object> map,HttpServletRequest req) throws ParseException {
 		
 		if (req.getSession().getAttribute("adminUser")!=null){
 			Booking booking = bookingService.getBooking(bookingId);
@@ -156,12 +163,27 @@ public class BookingController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveBooking(@ModelAttribute("booking") Booking booking,
-			BindingResult result,Map<String, Object> map) {
+			BindingResult result,Map<String, Object> map,HttpServletRequest req) throws ParseException {
 		
-		    System.out.println("booking time  " + booking.getTime());
+		   /*System.out.println("2016-10-27T02:58 " + booking.getDateTime());
+
+		    DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		    Date date = format.parse(booking.getDateTime().replace("T"," "));
+		    booking.setDateFrom(date);*/
 		
 			bookingService.saveBooking(booking);
-			return "redirect:listBooking";
+			if (req.getSession().getAttribute("adminUser")!=null){
+				map.put("booking", new Booking());
+				map.put("bookingList", bookingService.listBookings());
+		        map.put("bookingListId","1");
+				return "dashboard";
+			}else {
+				map.put("bookingMsg","Your booking deatils are succesfully send."
+						+ "Our Contact person will be contact You soon, Thank you");
+				return "/booking/booking";
+			}
+			
+		  
 		
 	}
 
@@ -179,5 +201,20 @@ public class BookingController {
 		}
 
 		
+	}
+	
+	@RequestMapping(value = { "/", "/listConfirmBooking" })
+	public String listConfirmBooking(Map<String, Object> map,HttpServletRequest req) {
+
+		if (req.getSession().getAttribute("adminUser")!=null){
+			map.put("booking", new Booking());
+			map.put("listConfirmBooking", bookingService.listConfirmBooking());
+	        map.put("listConfirmBookingId","1");
+			return "dashboard";
+			
+		}else {
+			map.put("adminUser",new AdminUser());
+			return "redirect:/admin/login";
+		}
 	}
 }

@@ -47,17 +47,17 @@
 
 						<div class="form-group col-xs-6">
 							<label for="customerName">Customer Name</label>
-							<form:input name="customerName" placeholder="Customer Name"
+							<form:input required="required" name="customerName" placeholder="Customer Name"
 								path="customerName" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="telephonenumber">Tel</label>
-							<form:input name="telephonenumber" path="telephonenumber"
-								placeholder="Tel" maxlength="15" class="form-control" />
+							<form:input required="required" name="telephonenumber" path="telephonenumber"
+								placeholder="Tel" pattern="^\d{10}$" maxlength="10" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="streetAdress">Address</label>
-							<form:input name="streetAdress" path="streetAdress"
+							<form:input required="required" name="streetAdress" path="streetAdress"
 								placeholder="Adress" maxlength="10" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
@@ -66,23 +66,23 @@
 								path="adressLineTwo" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
-							<label for="fuelType">City</label>
-							<form:input name="city" placeholder="City" path="city"
+							<label for="city">City</label>
+							<form:input required="required" name="city" placeholder="City" path="city"
 								class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="destination">Destination</label>
-							<form:input name="destination" placeholder="Destination"
+							<form:input required="required"  name="destination" placeholder="Destination"
 								path="destination" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="dateFrom">Date From</label>
-							<form:input type="date" name="dateFrom" placeholder="dateFrom"
-								path="dateFrom" class="form-control" />
+							<form:input id="dateFrom" type="datetime-local"
+								required="required" path="dateFrom" class="form-control" />
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="vehicalType">Vehicle Type</label>
-							<form:select path="vehicalType" class="form-control">
+							<form:select required="required" path="vehicalType" class="form-control">
 								<option value=""></option>
 								
 								<c:forEach items="${vehicleTypeList}" var="vehicleType">
@@ -100,7 +100,7 @@
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="ComfortableType">Comfortable Type</label>
-							<form:select path="comfortableType" class="form-control">
+							<form:select required="required" path="comfortableType" class="form-control">
 								<option value=""></option>
 								
 								<c:forEach items="${comfortableTypeList}" var="comfortableType">
@@ -118,13 +118,13 @@
 						</div>
 						<div class="form-group col-xs-6">
 							<label for="email">Email</label>
-							<form:input name="email" placeholder="email" path="email"
+							<form:input required="required" name="email" placeholder="email" path="email"
 								class="form-control" />
 						</div>
 
 						<div class="form-group col-xs-6">
 							<label for="status">Reservation Status</label>
-							<form:select path="status" class="form-control">
+							<form:select required="required" path="status" class="form-control">
 								<option value=""></option>
 								
 								<c:forEach items="${statusList}" var="status">

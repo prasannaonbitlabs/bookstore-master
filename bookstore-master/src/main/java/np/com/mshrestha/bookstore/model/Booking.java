@@ -1,7 +1,9 @@
 package np.com.mshrestha.bookstore.model;
 
-import java.sql.Date;
-import java.sql.Time;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 
@@ -22,14 +27,16 @@ public class Booking {
 	private Long id;
 	
 	private String customerName;
-	private int telephonenumber;
+	private String telephonenumber;
 	private String streetAdress;
 	private String adressLineTwo;
 	private String city;
 	private String destination;
+	@DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
 	private Date dateFrom;
 	private Date dateTo;
-	private Time time;
+	@Transient
+	private String DateTime;
 	private Double EsstimatedKm;
 	private String vehicalType;
 	private String comfortableType;
@@ -55,14 +62,15 @@ public class Booking {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	public int getTelephonenumber() {
-		return telephonenumber;
-	}
-	public void setTelephonenumber(int telephonenumber) {
-		this.telephonenumber = telephonenumber;
-	}
+	
 	public String getStreetAdress() {
 		return streetAdress;
+	}
+	public String getTelephonenumber() {
+		return telephonenumber;
+	}
+	public void setTelephonenumber(String telephonenumber) {
+		this.telephonenumber = telephonenumber;
 	}
 	public void setStreetAdress(String streetAdress) {
 		this.streetAdress = streetAdress;
@@ -88,9 +96,7 @@ public class Booking {
 	public Date getDateFrom() {
 		return dateFrom;
 	}
-	public void setDateFrom(Date dateFrom) {
-		this.dateFrom = dateFrom;
-	}
+	
 	public Date getDateTo() {
 		return dateTo;
 	}
@@ -122,13 +128,17 @@ public class Booking {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getDateTime() {
+		return DateTime;
+	}
+	public void setDateTime(String dateTime) {
+		DateTime = dateTime;
+	}
+	public void setDateFrom(java.util.Date date) {
+		this.dateFrom = date;
+	}
 
-	public Time getTime() {
-		return time;
-	}
-	public void setTime(Time time) {
-		this.time = time;
-	}
+	
 	
 	
 

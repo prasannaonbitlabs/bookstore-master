@@ -52,9 +52,7 @@ public class EmailServiceImpl implements EmailService {
 							+ "To activate the account click on the following link or copy-paste it in your browser: "
 							+ "http://localhost:8080/bookstore/person/activeUser?token="+map.get("sessionId")+" \n\n"
 							
-							+ "After activation you may login to http://localhost:8080/bookstore/ using the following username and password: \n\n \n\n "
-							+ "Username: prasannaprathiba \n\n "
-							+ "Password: 2198592 ");
+							+ "After activation you may login to http://localhost:8080/bookstore/ ");
 
 			Transport.send(message);
 

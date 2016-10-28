@@ -107,12 +107,11 @@ public class VehicleController {
 	public String saveVehicle(@ModelAttribute("vehicle") Vehicle vehicle,
 			BindingResult result,HttpServletRequest req,Map<String, Object> map
 			
-			) {
+			) throws IOException {
 		
 		if (req.getSession().getAttribute("adminUser")!=null){
 			
-			
-			if (!vehicle.getFile().isEmpty()) {
+			if (vehicle.getFile().getBytes().length > 0) {
 				try {
 					byte[] bytes = vehicle.getFile().getBytes();
 
@@ -129,7 +128,7 @@ public class VehicleController {
 							new FileOutputStream(serverFile));
 					stream.write(bytes);
 					stream.close();
-				
+				    
 						vehicle.setFileName(fileCode+vehicle.getFile().getOriginalFilename());
 				
 				} catch (Exception e) {

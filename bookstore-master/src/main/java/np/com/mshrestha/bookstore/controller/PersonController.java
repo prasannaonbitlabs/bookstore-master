@@ -35,7 +35,7 @@ public class PersonController {
 	@Autowired
 	private SessionIdentifierGeneratorService  sessionIdentifierGeneratorService;
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login")
 	public String login(@ModelAttribute("person")  Person person,
 			BindingResult result,Map<String, Object> map, HttpServletRequest req) {
 		   

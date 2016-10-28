@@ -34,6 +34,16 @@
 <c:if test="${driversReportID ne null && driversReportID eq 1}">
 	<%@ include file="../views/reports/driversReport.jsp" %>
 </c:if>
+<c:if test="${listConfirmBookingId ne null && listConfirmBookingId eq 1}">
+	<%@ include file="../views/booking/confirmBookingList.jsp" %>
+</c:if>
+<c:if test="${listVehicleAllocationId ne null && listVehicleAllocationId eq 1}">
+	<%@ include file="../views/vehicleAllocation/listVehicleAllocation.jsp" %>
+</c:if>
+
+
+
+
 
 
 
